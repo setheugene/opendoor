@@ -17,7 +17,7 @@ class App extends Component {
             target="_blank"
             rel="noopener noreferrer"
           >
-            OH GOD HELP HE'S IN THE HOUSE
+            Click the fucking link
           </a>
         </header>
       </div>
