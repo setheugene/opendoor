@@ -1,0 +1,24 @@
+{
+  "name": "opendoor",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/setheugene/opendoor.git"
+  },
+  "author": "Seth Eugene, Jake Duckworth, Jason Eckhart",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/setheugene/opendoor/issues"
+  },
+  "homepage": "https://github.com/setheugene/opendoor#readme",
+  "dependencies": {
+    "express": "^4.16.4",
+    "sequelize": "^5.3.5"
+  }
+}
