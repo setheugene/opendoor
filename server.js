@@ -25,8 +25,6 @@ admin.initializeApp({
   databaseURL: "https://opendoor-9b5d6.firebaseio.com"
 });
 
-
-
 // app.use(routes);
 
 
