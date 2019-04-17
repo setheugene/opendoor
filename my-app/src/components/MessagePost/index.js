@@ -9,6 +9,7 @@ class Message extends Component {
     post: ""
   };
 
+
   handleInputChange = event => {
     // Getting the value and name of the input which triggered the change
     let value = event.target.value;
@@ -37,16 +38,21 @@ class Message extends Component {
 
   render() {
     return (
-      <div>
-        <form className="form">
-          <input
-            value={this.state.input}
-            name="input"
-            onChange={this.handleInputChange}
-            type="text"
-            placeholder="Enter Message Here"
-          />
-          <button onClick={this.handleFormSubmit}>Submit</button>
+      <div className="container">
+        <form onSubmit={this.handleFormSubmit}>
+          <div className="form-message-post">
+            <label htmlFor="exampleInputEmail1">Name</label>
+            <input type="text" className="form-control" id="message-name" placeholder="Please Enter Your Name"></input>
+          </div>
+          <div className="form-message-post">
+            <label htmlFor="exampleInputPassword1">Room Number</label>
+            <input type="text" className="form-control" id="login-password" placeholder="Room #"></input>
+          </div>
+          <div className="form-group">
+            <label htmlFor="exampleFormControlTextarea1">Write a Message</label>
+            <textarea value={this.state.input} onChange={this.handleInputChange} name="input" className="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+          </div>
+          <button type="submit" value="Submit" className="btn btn-primary">Submit</button>
         </form>
       </div>
     );
@@ -54,3 +60,4 @@ class Message extends Component {
 }
 
 export default Message;
+
