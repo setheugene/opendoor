@@ -8,17 +8,17 @@ module.exports = function(sequelize, DataTypes) {
             type: DataTypes.DATE,
             allowNull: false,
         },
+        admin_status: {
+            type: DataTypes.BOOLEAN,
+            default: false,
+            allowNull: false
+        }
 
     });
 
 
     Message.associate = function(models) {
-        Message.belongsTo(models.User, {
-            foreignKey: {
-                name: 'user_id',
-                allowNull: false
-            }
-        });
+        Message.belongsTo(models.User);
     };
 
     return Message;
