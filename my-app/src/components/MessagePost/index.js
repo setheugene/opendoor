@@ -1,27 +1,56 @@
-import React from "react";
+
+import React, { Component } from "react";
 import "./style.css";
 
-function MessagePost() {
-    return (
-        <div className="container">
-            <form>
-                <div className="form-message-post">
-                    <label for="exampleInputEmail1">Name</label>
-                    <input type="text" className="form-control" id="message-name" placeholder="Please Enter Your Name"></input>
-                </div>
-                <div className="form-message-post">
-                    <label for="exampleInputPassword1">Room Number</label>
-                    <input type="text" className="form-control" id="login-password" placeholder="Room #"></input>
-                </div>
-                <div class="form-group">
-                    <label for="exampleFormControlTextarea1">Write a Message</label>
-                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                </div>
-                <button type="button" class="btn btn-primary">Primary</button>
-            </form>
-        </div>
+class Message extends Component {
+  // Setting the component's initial state
+  state = {
+    input: "",
+    post: ""
+  };
 
+  handleInputChange = event => {
+    // Getting the value and name of the input which triggered the change
+    let value = event.target.value;
+    const name = event.target.name;
+
+    // Updating the input's state
+    this.setState({
+      [name]: value
+    });
+  };
+
+  handleFormSubmit = event => {
+    let posts = [];
+    event.preventDefault();
+    if (!this.state.input) {
+      alert("Please insert a message before clicking submit.");
+    } else {
+      posts.push(`${this.state.input}`);
+    }
+
+    this.setState({
+      input: ""
+    });
+    console.log(posts);
+  };
+
+  render() {
+    return (
+      <div>
+        <form className="form">
+          <input
+            value={this.state.input}
+            name="input"
+            onChange={this.handleInputChange}
+            type="text"
+            placeholder="Enter Message Here"
+          />
+          <button onClick={this.handleFormSubmit}>Submit</button>
+        </form>
+      </div>
     );
+  }
 }
 
-export default MessagePost;
+export default Message;

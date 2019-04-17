@@ -19,6 +19,8 @@
   "homepage": "https://github.com/setheugene/opendoor#readme",
   "dependencies": {
     "express": "^4.16.4",
+    "firebase-admin": "^7.2.0",
+    "mysql2": "^1.6.5",
     "sequelize": "^5.3.5"
   }
 }
