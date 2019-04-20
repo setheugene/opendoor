@@ -4,10 +4,6 @@ module.exports = function(sequelize, DataTypes) {
             type: DataTypes.TEXT,
             allowNull: false
         },
-        date: {
-            type: DataTypes.DATE,
-            allowNull: false,
-        },
         admin_status: {
             type: DataTypes.BOOLEAN,
             default: false,

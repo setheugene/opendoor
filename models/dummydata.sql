@@ -14,6 +14,6 @@
 -- ("doe", 3, 500, false, 555555555, CURTIME(), CURTIME());
 
 -- INSERT INTO messages(message_content, date, admin_status, createdAt, updatedAt) VALUES
--- ("eat my shorts nerd", CURTIME(), false, CURTIME(), CURTIME()),
--- ("ADMIN MESSAGE", CURTIME(), true, CURTIME(), CURTIME()),
--- ("LETS GET THIS BREAD", CURTIME(), false, CURTIME(), CURTIME());
+-- ("eat my shorts nerd", false, CURTIME(), CURTIME()),
+-- ("ADMIN MESSAGE", true, CURTIME(), CURTIME()),
+-- ("LETS GET THIS BREAD", false, CURTIME(), CURTIME());

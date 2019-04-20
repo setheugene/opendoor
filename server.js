@@ -29,36 +29,105 @@ admin.initializeApp({
   databaseURL: "https://opendoor-9b5d6.firebaseio.com"
 });
 
-// checking for admin privileges from login
+
+// check for admin claims, returns true if so
+let verifyAdmin = (data) => {
+  // check if claims exist on this user already
+  if (data.email === "admin@admin.com" && data.customClaims && data.customClaims.admin === true) {
+    console.log("admin logged in");
+    return true;
+    // if the email is our administrator email and there's no custom claim, we add the admin claim and return true
+  } else if (data.email === "admin@admin.com") {
+    admin.auth().setCustomUserClaims(data.uid, { admin: true })
+      .then(() => {
+        console.log("admin privileges added, admin logged in");
+        return true;
+      })
+    // if there's no admin email and no custom admin claim, return false
+  } else {
+    console.log(data.email + "has logged in");
+    return false;
+  }
+}
+
+let verifyInDatabase = (data, admin, res) => {
+  db.User
+    .findOne({
+      where: {
+        username: data.email,
+        admin_status: admin
+      }
+    })
+    .then((found) => {
+      // if we don't find it, but we know the credentials exist in firebase, we add it to the database
+      if (!found) {
+        console.log("account not found in database, adding entry");
+        db.User
+          .create({
+            username: data.email,
+            admin_status: data.customClaims.admin
+          })
+          .then((info) => {
+            // and send back the relevant data for our state
+            console.log("account added, logging in");
+            res.json(info);
+          })
+        // if we do find it, we send back the relevant data for our state
+      } else if (found) {
+        console.log("account found, logging in")
+        res.json(found);
+      }
+    })
+}
+
+// checking for admin privileges from login and verifying our users with the database
 app.post("/login", function (req, res) {
   let idToken = req.body.token;
+
   // authenticating the token via firebase admin SDK
   admin.auth().verifyIdToken(idToken)
     .then(function (decodedToken) {
+
       // grabbing the uid from the decoded token
       let uid = decodedToken.uid
       console.log("UID RESOLVED: " + uid);
+      console.log("--------------------------------------------------------");
+
+      // verifying the info using the firebase admin sdk
       admin.auth().getUser(uid)
         .then(function (records) {
           console.log('Fetched user data: ', records.toJSON());
           let userInfo = records.toJSON();
-          // actual check for admin custom claims,  if so we return true
-          if (userInfo.email === "admin@admin.com" && userInfo.customClaims && userInfo.customClaims.admin === true) {
-            return true;
-            // if the email is our administrator email and there's no custom claim, we add the admin claim and return true
-          } else if (userInfo.email === "admin@admin.com") {
-            admin.auth().setCustomUserClaims(userInfo.uid, { admin: true })
-              .then(() => {
-                return true;
-              })
-            // if there's no admin email and no custom admin claim, return false
-          } else {
-            return false;
+          // actual check for admin custom claims, if so we return true
+          verifyAdmin(userInfo);
+          // verifying admin in database
+          if (verifyAdmin(userInfo) === true) {
+            console.log("verifying admin in database....");
+            // look for our admin in database
+            verifyInDatabase(userInfo, true, res);
+            // if we know they're not an admin, we need to verify the user in database
+          } else if (verifyAdmin(userInfo) === false) {
+            console.log("verifying user in database....");
+            verifyInDatabase(userInfo, false, res);
           }
         })
         .catch((err) => {
           throw err
         })
+    })
+})
+
+// grabbing user info from login url
+app.get("/login/:username", function (req, res) {
+  console.log(req.params.username);
+  db.User
+    .findOne({
+      where: {
+        username: req.params.username
+      }
+    })
+    .then(function(userData) {
+      res.json(userData);
     })
 })
 
