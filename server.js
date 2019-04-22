@@ -30,7 +30,7 @@ admin.initializeApp({
 });
 
 
-// check for admin claims, returns true if so
+// function to check for admin claims on firebase, returns true if so
 let verifyAdmin = (data) => {
   // check if claims exist on this user already
   if (data.email === "admin@admin.com" && data.customClaims && data.customClaims.admin === true) {
@@ -45,13 +45,16 @@ let verifyAdmin = (data) => {
       })
     // if there's no admin email and no custom admin claim, return false
   } else {
-    console.log(data.email + "has logged in");
+    console.log(data.email + " has logged in");
     return false;
   }
 }
 
-let verifyInDatabase = (data, admin, res) => {
-  db.User
+// finds our user in database to see if they exist, if not we add them
+// this function ONLY ever gets called after we create an account in firebase
+// or when a user is logging into the system
+let verifyInDatabase = async (data, admin, res) => {
+  await db.User
     .findOne({
       where: {
         username: data.email,
@@ -65,17 +68,19 @@ let verifyInDatabase = (data, admin, res) => {
         db.User
           .create({
             username: data.email,
-            admin_status: data.customClaims.admin
+            admin_status: admin
           })
           .then((info) => {
             // and send back the relevant data for our state
             console.log("account added, logging in");
-            res.json(info);
+            // console.log(info);
+            return info
           })
         // if we do find it, we send back the relevant data for our state
       } else if (found) {
         console.log("account found, logging in")
-        res.json(found);
+        // console.log(found);
+        return found
       }
     })
 }
@@ -109,6 +114,9 @@ app.post("/login", function (req, res) {
           } else if (verifyAdmin(userInfo) === false) {
             console.log("verifying user in database....");
             verifyInDatabase(userInfo, false, res);
+            if (found) {
+              console.log(found);
+            }
           }
         })
         .catch((err) => {
@@ -126,8 +134,60 @@ app.get("/login/:username", function (req, res) {
         username: req.params.username
       }
     })
-    .then(function(userData) {
+    .then(function (userData) {
       res.json(userData);
+    })
+})
+
+// when a new tenant request is sent
+app.post("/api/addtenant", function (req, res) {
+  // first we create the user in our firebase database for authentication purposes
+  admin.auth().createUser({
+    email: req.body.username,
+    password: "password"
+  })
+    .then(function (newUser) {
+      // letting us know the new user was created successfully and gives us a uid to play with
+      console.log("New user created in Firebase: " + newUser.email);
+      console.log(newUser.email + " UID: " + newUser.uid);
+
+      // set custom claims for our new user to be false by default
+      admin.auth().setCustomUserClaims(newUser.uid, { admin: false })
+        .then(() => {
+          // verify their information in the database
+          verifyInDatabase(newUser, false, res)
+            .then(() => {
+              // look up the newly created entry
+              db.User
+                .findOne({
+                  where: {
+                    username: newUser.email
+                  }
+                })
+                .then(function (userData) {
+                  // actuall add the new tenant information with a user id attached to reference later
+                  let newUserId = userData.dataValues.id
+                  db.Tenant
+                    .create({
+                      real_name: req.body.name,
+                      unit_number: req.body.unit,
+                      rent_amount: req.body.rent,
+                      contact: req.body.contact,
+                      UserId: newUserId
+                    })
+                    .then((newTenant) => {
+                      console.log("New user added to database, ID: " + userData.dataValues.id)
+                      console.log(newTenant);
+                    })
+                })
+            })
+
+
+        })
+
+    })
+    .catch(function (error) {
+      throw error;
     })
 })
 
