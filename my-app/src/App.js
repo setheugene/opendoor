@@ -24,12 +24,10 @@ firebase.initializeApp(config)
 function App() {
   return (
     <Router>
-      <div>
         <Nav />
-        <Route exact path="/" component={Login} />
-        <Route exact path="/tenant" component={Homepage} />
+          <Route exact path="/" component={Login} />
+          <Route exact path="/tenant" component={Homepage} />
         <Footer />
-      </div>
     </Router>
 
   )

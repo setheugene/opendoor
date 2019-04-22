@@ -1,3 +1,9 @@
 .navbar {
-    background: grey;
+    position: fixed;
+    background: #ed8a63;
+    border-style: outset black;
+    font-family: 'Pacifico', cursive;
+    top: 0;
+    right: 0;
+    width: 100%;
 }

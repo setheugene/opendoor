@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Login from "../components/Login";
 import firebase from "firebase";
 import $ from 'jquery'; 
-
+import About from "../components/About";
 
 class LoginPage extends Component {
 
@@ -64,6 +64,7 @@ class LoginPage extends Component {
         return (
             <div>
                 <Login handleLoginClick={this.handleLoginClick} handlePasswordChange={this.handlePasswordChange} handleEmailChange={this.handleEmailChange}/>
+                <About />
             </div>
         )
     }

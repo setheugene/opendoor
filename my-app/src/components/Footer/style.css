@@ -1,3 +1,8 @@
 .page-footer {
-    background: grey;
+    background:#ed8a63;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width:100%;
+    border-top: outset black;
 }
