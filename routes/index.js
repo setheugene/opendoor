@@ -1,9 +1,9 @@
 const path = require("path");
 const router = require("express").Router();
-// const apiRoutes = require("./api");
+const apiRoutes = require("./api");
 
 // API Routes
-// router.use("/api", apiRoutes);
+router.use("/api", apiRoutes);
 
 
 // ------------------FOR JAKE TESTING FOLDER-------------------
