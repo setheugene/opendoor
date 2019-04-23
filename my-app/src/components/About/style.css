@@ -1,0 +1,12 @@
+#about-cont {
+    background: #3a4660;
+    margin-top: 150px;
+    word-wrap: break-word;
+    color: white;
+    border-radius: 5px;
+    
+}
+
+h2 {
+    border-bottom: white;
+}

@@ -1,11 +1,31 @@
-body {
- 
+
+.btn {
+    background: #c9af98;
+    margin-top: 15px;
+    color: black;
+    width: 20%;
+    border-color: #c9af98;
 }
 
-.container {
-    width: 60%;
-    background: lightblue;
-    margin-top: 150px;
+#btn-logout {
+ padding: 10px;
+}
+
+#login-cont {
+    width: 45%;
+    background: #3a4660;
+    margin-top: 75px;
+    border-style: outset;
     border-radius: 10px;
     padding: 20px;
+    color: white;
+    box-shadow: 10px 10px 5px grey;
+    font-family: 'Karla', sans-serif;
+    font-size: 25px;
+    
+}
+
+h1 {
+    border-bottom: solid white;
+    margin-bottom: 15px;
 }

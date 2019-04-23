@@ -56,7 +56,7 @@ class Message extends Component {
         </form>
       </div>
     );
-  }
+  };
 }
 
 export default Message;
