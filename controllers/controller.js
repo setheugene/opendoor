@@ -31,7 +31,8 @@ module.exports = {
         db.Message
             .destroy({
                 where: {
-                    UserId: req.params.id
+                    UserId: req.params.id,
+                    createdAt: req.body.createdAt
                 }
             })
             .then((dbData) => {
