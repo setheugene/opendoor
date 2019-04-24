@@ -1,10 +1,17 @@
 
 .btn {
-    background: #c9af98;
+    background: lightgrey;
     margin-top: 15px;
     color: black;
     width: 20%;
-    border-color: #c9af98;
+    border-color: #3a4660;
+    
+
+}
+
+.btn:hover {
+    border-color: #3a4660;
+    box-shadow: 5px 5px 5px #3a4660;
 }
 
 #btn-logout {

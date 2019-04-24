@@ -5,7 +5,6 @@ import * as firebase from "firebase/app";
 import Nav from "./components/Navbar";
 import Login from "./pages/Login";
 import Footer from "./components/Footer";
-import Message from "./components/MessagePost";
 import Homepage from "./pages/Homepage";
 
 

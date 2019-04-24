@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import Login from "../components/Login";
 import firebase from "firebase";
-import $ from 'jquery'; 
+import $ from 'jquery';
 import About from "../components/About";
 
 class LoginPage extends Component {
 
-    state ={
+    state = {
         email: "",
         password: "",
         admin: false
@@ -14,14 +14,14 @@ class LoginPage extends Component {
     };
     handleEmailChange = event => {
         this.setState({ email: event.target.value });
-      };
-    
+    };
+
 
     handlePasswordChange = event => {
-        this.setState({ password: event.target.value})
-      };
-    
-    
+        this.setState({ password: event.target.value })
+    };
+
+
 
     sendCredentials = token => {
         $.ajax({
@@ -30,6 +30,19 @@ class LoginPage extends Component {
             data: { 'token': token }
         })
     }
+    authenticateSession = () => {
+        let data = sessionStorage.getItem("firebase:authUser:AIzaSyAHG7wWYd4h2W2u4kbhLGRPpM5CtwBENJM:[DEFAULT]")
+        let parsedData = JSON.parse(data);
+        // console.log(parsedData);
+        let uid = parsedData.uid
+        let email = parsedData.email
+
+        console.log("Session storage UID: " + uid)
+        console.log("Session storage email: " + email)
+
+        this.getCredentials(email);
+    }
+
 
     handleLoginClick = event => {
         event.preventDefault();
@@ -44,8 +57,14 @@ class LoginPage extends Component {
                         console.log("Logged in")
                         console.log(res)
                         firebase.auth().currentUser.getIdToken(true)
-                            .then((idToken)  => {
+                            .then((idToken) => {
                                 this.sendCredentials(idToken)
+                                    .then(() => {
+                                        this.authenticateSession()
+                                    })
+                                    .catch((err) => {
+                                        throw err;
+                                    })
                             })
                             .catch((err) => {
                                 throw err;
@@ -55,17 +74,14 @@ class LoginPage extends Component {
                         throw err;
                     })
             })
-            .catch((err) => {
-                throw err;
-            })
-    }
+        }
 
     render() {
         return (
             <div>
-                <Login handleLoginClick={this.handleLoginClick} handlePasswordChange={this.handlePasswordChange} handleEmailChange={this.handleEmailChange}/>
+                <Login handleLoginClick={this.handleLoginClick} handlePasswordChange={this.handlePasswordChange} handleEmailChange={this.handleEmailChange} />
                 <About />
-            </div>
+            </div >
         )
     }
 }
