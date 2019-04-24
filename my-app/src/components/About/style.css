@@ -1,12 +1,17 @@
 #about-cont {
     background: #3a4660;
-    margin-top: 150px;
+    margin-top: 200px;
     word-wrap: break-word;
     color: white;
     border-radius: 5px;
+    height: 50%;
+    margin-bottom: 200px;
+    border-style: outset;
+    box-shadow: 10px 10px 5px grey;
     
 }
 
 h2 {
     border-bottom: white;
+    margin-top: 10px;
 }

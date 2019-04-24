@@ -3,6 +3,7 @@
     position: fixed;
     left: 0;
     bottom: 0;
+    height: 5%;
     width:100%;
     border-top: outset black;
 }
