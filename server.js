@@ -1,19 +1,24 @@
 const express = require("express");
 const sequelize = require("sequelize");
 const routes = require("./routes");
+const db = require("./models");
 const app = express();
 
 // firebase service sdk
 const admin = require("firebase-admin")
 const serviceAccount = require("./config/opendoor-admin.json");
 
-const db = require("./models");
 const PORT = process.env.PORT || 3001;
 
 // Define middleware here
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(express.static("testing"));
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
+// app.use(express.static("testing"));
 
 
 // Serve up static assets (usually on heroku)
@@ -73,14 +78,18 @@ let verifyInDatabase = async (data, admin, res) => {
           .then((info) => {
             // and send back the relevant data for our state
             console.log("account added, logging in");
-            // console.log(info);
-            return info
+            res = info
+            // console.log(res);
+            return res
+            
           })
         // if we do find it, we send back the relevant data for our state
       } else if (found) {
         console.log("account found, logging in")
-        // console.log(found);
-        return found
+        res = found
+        // console.log(res);
+        return res
+        
       }
     })
 }
@@ -109,14 +118,17 @@ app.post("/login", function (req, res) {
           if (verifyAdmin(userInfo) === true) {
             console.log("verifying admin in database....");
             // look for our admin in database
-            verifyInDatabase(userInfo, true, res);
+            verifyInDatabase(userInfo, true, res)
+            .then((response) => {
+              res.json(response);
+            })
             // if we know they're not an admin, we need to verify the user in database
           } else if (verifyAdmin(userInfo) === false) {
             console.log("verifying user in database....");
-            verifyInDatabase(userInfo, false, res);
-            if (found) {
-              console.log(found);
-            }
+            verifyInDatabase(userInfo, false, res)
+              .then((response) => {
+              res.json(response);
+            })
           }
         })
         .catch((err) => {
@@ -127,7 +139,7 @@ app.post("/login", function (req, res) {
 
 // grabbing user info from login url
 app.get("/login/:username", function (req, res) {
-  console.log(req.params.username);
+  console.log("LOOKING UP: " + req.params.username);
   db.User
     .findOne({
       where: {
@@ -135,6 +147,7 @@ app.get("/login/:username", function (req, res) {
       }
     })
     .then(function (userData) {
+      console.log("User found, sending...");
       res.json(userData);
     })
 })

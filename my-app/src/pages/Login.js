@@ -3,6 +3,7 @@ import Login from "../components/Login";
 import firebase from "firebase";
 import $ from 'jquery';
 import About from "../components/About";
+import API from "../utils/API";
 
 class LoginPage extends Component {
 
@@ -10,39 +11,15 @@ class LoginPage extends Component {
         email: "",
         password: "",
         admin: false
-
     };
+
     handleEmailChange = event => {
         this.setState({ email: event.target.value });
     };
 
-
     handlePasswordChange = event => {
         this.setState({ password: event.target.value })
     };
-
-
-
-    sendCredentials = token => {
-        $.ajax({
-            type: "POST",
-            url: "/login",
-            data: { 'token': token }
-        })
-    }
-    authenticateSession = () => {
-        let data = sessionStorage.getItem("firebase:authUser:AIzaSyAHG7wWYd4h2W2u4kbhLGRPpM5CtwBENJM:[DEFAULT]")
-        let parsedData = JSON.parse(data);
-        // console.log(parsedData);
-        let uid = parsedData.uid
-        let email = parsedData.email
-
-        console.log("Session storage UID: " + uid)
-        console.log("Session storage email: " + email)
-
-        this.getCredentials(email);
-    }
-
 
     handleLoginClick = event => {
         event.preventDefault();
@@ -58,13 +35,18 @@ class LoginPage extends Component {
                         console.log(res)
                         firebase.auth().currentUser.getIdToken(true)
                             .then((idToken) => {
-                                this.sendCredentials(idToken)
-                                    .then(() => {
-                                        this.authenticateSession()
-                                    })
-                                    .catch((err) => {
-                                        throw err;
-                                    })
+                                console.log(idToken);
+                                API.sendCredentials(idToken)
+                                window.location.replace("http://localhost:3000/home");
+                                // WHY DOESNT THIS GET A RESPONSE?????????????
+                                    // .then((res) => {
+                                    //     console.log(res);
+                                    //     console.log("Verified user, redirecting...");
+                                        
+                                    // })
+                                    // .catch((err) => {
+                                    //     throw err;
+                                    // })
                             })
                             .catch((err) => {
                                 throw err;

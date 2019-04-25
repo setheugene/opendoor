@@ -1,4 +1,5 @@
 import axios from 'axios';
+import $ from 'jquery';
 
 const API = {
     insertPost:(postToInsert) => {
@@ -12,6 +13,13 @@ const API = {
     },
     getTenants: (tenantList) => {
         return axios.get('/api/addtenants', tenantList)
+    },
+    sendCredentials: (token) => {
+        $.ajax({
+            type: "POST",
+            url: "http://localhost:3001/login",
+            data: { 'token': token }
+        })
     }
 };
 
