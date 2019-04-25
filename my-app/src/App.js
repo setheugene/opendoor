@@ -25,7 +25,7 @@ function App() {
     <Router>
         <Nav />
           <Route exact path="/" component={Login} />
-          <Route exact path="/tenant" component={Homepage} />
+          <Route exact path="/home" component={Homepage} />
         <Footer />
     </Router>
 
