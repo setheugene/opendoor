@@ -2,13 +2,14 @@ const router = require("express").Router();
 const controller = require("../../controllers/controller.js");
 
 // /api/all/x routes
-router.route("/messages")
+router.route("/posts")
     .get(controller.findPosts)
-
-
-router.route("/messages/:id")
-    .delete(controller.deletePost)
     .post(controller.postPost);
+
+
+router.route("/posts/:id")
+    .delete(controller.deletePost)
+
     
 router.route("/tenants")
     .get(controller.getAllTenants);

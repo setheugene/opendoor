@@ -1,20 +1,59 @@
 import React, { Component } from "react";
 import "./style.css";
+import $ from "jquery";
 
 import API from '../../utils/API';
 
 class Message extends Component {
   // Setting the component's initial state
   state = {
-    input: "",
-    post: ""
+    username: "",
+    id: "",
+    admin_status: "",
+    message_content: "",
+  };
+
+  componentDidMount() {
+    this.authenticateSession();
+  }
+
+  // export this function and have it return an object
+  getCredentials = (username) => {
+    $.ajax({
+      type: "GET",
+      url: "http://localhost:3001/login/" + username,
+      data: { 'username': username }
+    }).then((res) => {
+      this.setState({
+        username: res.username,
+        id: res.id,
+        admin_status: res.admin_status
+      })
+    })
+  }
+
+  authenticateSession = () => {
+    let data = sessionStorage.getItem("firebase:authUser:AIzaSyAHG7wWYd4h2W2u4kbhLGRPpM5CtwBENJM:[DEFAULT]")
+    let parsedData = JSON.parse(data);
+    // console.log(parsedData);
+    let uid = parsedData.uid
+    let email = parsedData.email
+
+    console.log("Session storage UID: " + uid)
+    console.log("Session storage email: " + email)
+
+    this.getCredentials(email);
   };
 
   handlePost = event => {
-    API.insertPost(this.state.input)
+    console.log(this.state)
+    API.insertPost({
+      message_content: this.state.message_content,
+      admin_status: this.state.admin_status,
+      UserId: this.state.id,
+    })
       .then(() => {
-        // reload the page
-        console.log(this.state.input)
+        console.log("success");
       });
   };
 
@@ -32,18 +71,18 @@ class Message extends Component {
   handleFormSubmit = event => {
     let posts = [];
     event.preventDefault();
-    if (!this.state.input) {
+    if (!this.state.message_content) {
       alert("Please insert a message before clicking submit.");
     } else {
-      posts.push(`${this.state.input}`);
+      posts.push(`${this.state.message_content}`);
       this.handlePost();
     }
 
     this.setState({
-      input: [posts]
+      message_content: [posts]
     });
     console.log(posts);
-   
+
   };
 
   render() {
@@ -71,10 +110,10 @@ class Message extends Component {
           <div className="form-group">
             <label htmlFor="exampleFormControlTextarea1">Write a Message</label>
             <textarea
-              value={this.state.input}
+              value={this.state.message_content}
               onChange={this.handleInputChange}
-     
-              name="input"
+
+              name="message_content"
               className="form-control"
               id="exampleFormControlTextarea1"
               rows="3"

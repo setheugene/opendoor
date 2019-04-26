@@ -42,7 +42,6 @@ class LoginPage extends Component {
                                     // .then((res) => {
                                     //     console.log(res);
                                     //     console.log("Verified user, redirecting...");
-                                        
                                     // })
                                     // .catch((err) => {
                                     //     throw err;
