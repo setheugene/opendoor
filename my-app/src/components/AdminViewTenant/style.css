@@ -1,4 +1,4 @@
-#tenant-cont {
+#tenant-view-cont {
     width: 60%;
     background: #3a4660;
     margin-top: 75px;
@@ -10,9 +10,4 @@
     font-family: 'Karla', sans-serif;
     font-size: 25px;
     
-}
-
-.form-control {
-    background: lightgrey;
-    margin: 5px;
 }

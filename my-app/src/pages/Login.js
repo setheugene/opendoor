@@ -63,7 +63,7 @@ class LoginPage extends Component {
             <div>
                 <Login handleLoginClick={this.handleLoginClick} handlePasswordChange={this.handlePasswordChange} handleEmailChange={this.handleEmailChange} />
                 <About />
-            </div >
+            </div>
         )
     }
 }

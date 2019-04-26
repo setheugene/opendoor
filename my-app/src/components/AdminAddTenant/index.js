@@ -56,7 +56,8 @@ class TenantForm extends Component {
 
     render() {
         return (
-            <div className="container">
+            <div className="container" id="tenant-cont">
+            <h1> Add A New Tenant</h1>
                 <form className="form-group">
                     <input className="form-control"
                         value={this.state.real_name}
@@ -79,7 +80,7 @@ class TenantForm extends Component {
                         type="text"
                         placeholder="Rent Amount"
                     />
-                    <lable>Has Paid Rent?</lable>
+                    <label>Has Paid Rent?</label>
                     <input className="form-control"
                         value={this.state.rent_paid}
                         name="rent_paid"
@@ -102,7 +103,7 @@ class TenantForm extends Component {
                         type="text"
                         placeholder="Username (e-mail)"
                     />
-                    <button onClick={this.handleFormSubmit}>Submit</button>
+                    <button type="submit" onClick={this.handleFormSubmit}>Add</button>
                 </form>
             </div>
         );

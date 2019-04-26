@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Message from "../components/MessagePost";
-import TenantInfo from "../components/TenantInfo";
+import ViewTenant from "../components/AdminViewTenant";
 import TenantForm from "../components/AdminAddTenant";
 import $ from 'jquery';
 
@@ -48,24 +48,18 @@ class Homepage extends Component {
     render() {
 
         if (this.state.admin_status === true) {
-            console.log("DATABSE ID: " + this.state.id);
-            console.log("DATABSE USERNAME: " + this.state.username);
-            console.log("SHOWING ADMIN VIEW: " + this.state.admin_status)
+
             return (
                 <div>
-                    <h1>ADMIN PAGE</h1>
-                    <Message />
+                    <TenantForm />
+                    <ViewTenant />
                 </div>
 
             )
         } else if (this.state.admin_status === false) {
-            console.log("DATABSE ID: " + this.state.id);
-            console.log("DATABSE USERNAME: " + this.state.username);
-            console.log("SHOWING ADMIN VIEW: " + this.state.admin_status)
             return (
                 <div>
-                    <h1>TENANT PAGE</h1>
-                    <TenantInfo />
+                    <Message />
                 </div>
 
             )
