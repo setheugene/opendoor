@@ -15,11 +15,12 @@ module.exports = {
 
     // adding a new post with the current logged in users id (in state)
     postPost: function(req,res) {
+        console.log(req.body);
         db.Message
             .create({
                 message_content: req.body.message_content,
                 admin_status: req.body.admin_status,
-                UserId: req.body.id
+                UserId: req.body.UserId,
             })
             .catch((err) => {
                 throw err

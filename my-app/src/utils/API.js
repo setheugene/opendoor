@@ -3,7 +3,7 @@ import $ from 'jquery';
 
 const API = {
     insertPost:(postToInsert) => {
-        return axios.post('/api/posts', postToInsert)
+        return axios.post('http://localhost:3001/api/all/posts', postToInsert)
     },
     getPosts:(posts)=> {
         return axios.get('/api/posts', posts)
