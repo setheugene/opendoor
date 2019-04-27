@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import Message from "../components/MessagePost";
 import ViewTenant from "../components/AdminViewTenant";
 import TenantForm from "../components/AdminAddTenant";
+import ViewMessage from "../components/ViewMessage";
+import ViewTenantCard from "../components/Card";
 import $ from 'jquery';
 
 
@@ -45,20 +47,25 @@ class Homepage extends Component {
         this.getCredentials(email);
     };
 
+    getTenantInfo = () => {
+
+    }
+
     render() {
 
         if (this.state.admin_status === true) {
 
             return (
                 <div>
-                    <TenantForm />
-                    <ViewTenant />
+                    <ViewTenantCard />
+
                 </div>
 
             )
         } else if (this.state.admin_status === false) {
             return (
                 <div>
+                    <ViewMessage />
                     <Message />
                 </div>
 
