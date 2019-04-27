@@ -14,4 +14,7 @@ router.route("/posts/:id")
 router.route("/tenants")
     .get(controller.getAllTenants);
 
+router.route("/tenants")
+    .put(controller.updateTenant);
+
 module.exports = router;

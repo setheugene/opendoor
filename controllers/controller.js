@@ -56,6 +56,22 @@ module.exports = {
             })
     },
 
-
-
+    // update some tenant information
+    updateTenant: function(req,res) {
+        db.Tenant
+            .update({
+                real_name: req.body.nae,
+                unit_number: req.body.unit,
+                rent_amount: req.body.rent,
+                rent_paid: req.body.paid,
+                contact: req.body.contact
+            }, {
+                where: {
+                    id: req.body.id
+                }
+            }).then((dbData) => {
+                console.log("Updating tenant info in DB at ID: " + req.body.id)
+                res.json(dbData);
+            })
+    }
 }
