@@ -29,11 +29,14 @@ if (process.env.NODE_ENV === "production") {
 
 var syncOptions = { force: true };
 
-// firebase admin sdk
+// firebase admin sdk, anytime we interact with firebase we want to be on this file
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
   databaseURL: "https://opendoor-9b5d6.firebaseio.com"
 });
+
+
+
 
 
 // function to check for admin claims on firebase, returns true if so
@@ -165,7 +168,7 @@ app.post("/api/addtenant", function (req, res) {
       console.log("New user created in Firebase: " + newUser.email);
       console.log(newUser.email + " UID: " + newUser.uid);
 
-      // set custom claims for our new user to be false by default
+      // set custom admin claims for our new user to be false by default
       admin.auth().setCustomUserClaims(newUser.uid, { admin: false })
         .then(() => {
           // verify their information in the database
@@ -179,7 +182,7 @@ app.post("/api/addtenant", function (req, res) {
                   }
                 })
                 .then(function (userData) {
-                  // actuall add the new tenant information with a user id attached to reference later
+                  // actually add the new tenant information with a user id attached to reference later
                   let newUserId = userData.dataValues.id
                   db.Tenant
                     .create({
@@ -204,6 +207,27 @@ app.post("/api/addtenant", function (req, res) {
       throw error;
     })
 })
+
+app.delete("/api/all/tenants", (req,res) => {
+    // first we delete the user in our database
+    db.User
+        .destroy({
+            where: {
+                id: req.body.id
+            }
+        }).then((dbData) => {
+            console.log("Removing user data from DB for User ID: " + req.body.id)
+            res.json(dbData);
+            // then we remove them from firebase as well
+            admin.auth().deleteUser(req.body.uid)
+              .then(() => {
+                console.log("User removed from Firebase login")
+              })
+              .catch((err) => {
+                throw err
+              });
+        });
+});
 
 app.use(routes);
 
