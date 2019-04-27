@@ -1,0 +1,45 @@
+#portfolio-body {
+    width: 60%;
+    margin-top: 75px;
+    padding: 20px;
+    font-family: 'Karla', sans-serif;
+    font-size: 25px;
+    color: white;
+    text-align: center;
+}
+
+a{
+    color:white;
+}
+
+#h1-test {
+    background: #3a4660;
+    border-radius: 8px;
+}
+
+#img-body {
+    display: block;
+    height: auto;
+    background: #3a4660;
+    text-align: center;
+    padding: 10px;
+    border-radius: 8px;
+    margin: 10px;
+}
+
+.row {
+    width: 80%;
+}
+
+
+.text {
+    color: rgb(85, 83, 83);
+    font-size: 20px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    text-align: center;
+  }
