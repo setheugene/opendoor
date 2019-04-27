@@ -4,6 +4,7 @@ import { MessageListItem, MessageList } from "../components/MessageView";
 import API from "../utils/API";
 import ViewTenant from "../components/AdminViewTenant";
 import TenantForm from "../components/AdminAddTenant";
+import TenantHome from "../components/Card";
 import $ from 'jquery';
 
 
@@ -63,6 +64,7 @@ class Homepage extends Component {
             return (
                 <div>
                     {/* <TenantForm /> */}
+                    <TenantHome />
                     <ViewTenant />
                     <Message />
                     <MessageList>
