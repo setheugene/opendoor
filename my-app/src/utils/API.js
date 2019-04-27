@@ -6,7 +6,7 @@ const API = {
         return axios.post('http://localhost:3001/api/all/posts', postToInsert)
     },
     getPosts:(posts)=> {
-        return axios.get('/api/posts', posts)
+        return axios.get('http://localhost:3001/api/all/posts', posts)
     },
     addTenant:(newTenant) => {
         return axios.post('/api/addtenant', newTenant)
