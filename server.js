@@ -14,7 +14,7 @@ const PORT = process.env.PORT || 3001;
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 // blocking CORS errors
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   next();
@@ -62,8 +62,8 @@ let verifyAdmin = (data) => {
 // finds our user in database to see if they exist, if not we add them
 // this function ONLY ever gets called after we create an account in firebase
 // or when a user is logging into the system
-let verifyInDatabase = async (data, admin, res) => {
-  await db.User
+let verifyInDatabase = (data, admin, res) => {
+  db.User
     .findOne({
       where: {
         username: data.email,
@@ -82,18 +82,13 @@ let verifyInDatabase = async (data, admin, res) => {
           .then((info) => {
             // and send back the relevant data for our state
             console.log("account added, logging in");
-            res = info
-            // console.log(res);
-            return res
-            
+            res.json(info)
           })
         // if we do find it, we send back the relevant data for our state
       } else if (found) {
         console.log("account found, logging in")
-        res = found
-        // console.log(res);
-        return res
-        
+        res.json(found);
+
       }
     })
 }
@@ -123,16 +118,16 @@ app.post("/login", function (req, res) {
             console.log("verifying admin in database....");
             // look for our admin in database
             verifyInDatabase(userInfo, true, res)
-            .then((response) => {
-              res.json(response);
-            })
+              .then((response) => {
+                res.json(response);
+              })
             // if we know they're not an admin, we need to verify the user in database
           } else if (verifyAdmin(userInfo) === false) {
             console.log("verifying user in database....");
             verifyInDatabase(userInfo, false, res)
               .then((response) => {
-              res.json(response);
-            })
+                res.json(response);
+              })
           }
         })
         .catch((err) => {
@@ -208,25 +203,25 @@ app.post("/api/addtenant", function (req, res) {
     })
 })
 
-app.delete("/api/all/tenants", (req,res) => {
-    // first we delete the user in our database
-    db.User
-        .destroy({
-            where: {
-                id: req.body.id
-            }
-        }).then((dbData) => {
-            console.log("Removing user data from DB for User ID: " + req.body.id)
-            res.json(dbData);
-            // then we remove them from firebase as well
-            admin.auth().deleteUser(req.body.uid)
-              .then(() => {
-                console.log("User removed from Firebase login")
-              })
-              .catch((err) => {
-                throw err
-              });
+app.delete("/api/all/tenants", (req, res) => {
+  // first we delete the user in our database
+  db.User
+    .destroy({
+      where: {
+        id: req.body.id
+      }
+    }).then((dbData) => {
+      console.log("Removing user data from DB for User ID: " + req.body.id)
+      res.json(dbData);
+      // then we remove them from firebase as well
+      admin.auth().deleteUser(req.body.uid)
+        .then(() => {
+          console.log("User removed from Firebase login")
+        })
+        .catch((err) => {
+          throw err
         });
+    });
 });
 
 app.use(routes);

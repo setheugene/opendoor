@@ -37,16 +37,15 @@ class LoginPage extends Component {
                             .then((idToken) => {
                                 console.log(idToken);
                                 API.sendCredentials(idToken)
-                                window.location.replace("http://localhost:3000/home");
                                 // WHY DOESNT THIS GET A RESPONSE?????????????
-                                    // .then((res) => {
-                                    //     console.log(res);
-                                    //     console.log("Verified user, redirecting...");
-                                    //     window.location.replace("http://localhost:3000/home");
-                                    // })
-                                    // .catch((err) => {
-                                    //     throw err;
-                                    // })
+                                    .then((res) => {
+                                        console.log(res);
+                                        console.log("Verified user, redirecting...");
+                                        window.location.replace("http://localhost:3000/home");
+                                    })
+                                    .catch((err) => {
+                                        throw err;
+                                    })
                             })
                             .catch((err) => {
                                 throw err;

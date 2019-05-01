@@ -3,10 +3,10 @@ import $ from 'jquery';
 
 const API = {
     insertPost:(postToInsert) => {
-        return axios.post('http://localhost:3001/api/all/posts', postToInsert)
+        return axios.post('/api/all/posts', postToInsert)
     },
     getPosts:(posts)=> {
-        return axios.get('http://localhost:3001/api/all/posts', posts)
+        return axios.get('/api/all/posts', posts)
     },
     addTenant:(newTenant) => {
         return axios.post('/api/addtenant', newTenant)
@@ -15,10 +15,12 @@ const API = {
         return axios.get('/api/addtenants', tenantList)
     },
     sendCredentials: (token) => {
-        $.ajax({
-            type: "POST",
-            url: "http://localhost:3001/login",
+        return axios({
+            method: "POST",
+            url: "/login",
             data: { 'token': token }
+        }).then((res) => {
+            console.log(res);
         })
     }
 };

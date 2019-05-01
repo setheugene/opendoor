@@ -26,7 +26,7 @@ class Homepage extends Component {
     getCredentials = (username) => {
         $.ajax({
             type: "GET",
-            url: "http://localhost:3001/login/" + username,
+            url: "/login/" + username,
             data: { 'username': username }
         }).then((res) => {
             this.setState({
