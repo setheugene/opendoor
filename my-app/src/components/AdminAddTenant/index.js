@@ -14,14 +14,13 @@ class TenantForm extends Component {
   };
 
   handlePost = event => {
-    console.log(this.state.input);
     API.addTenant({
         real_name: this.state.real_name,
         unit_number: this.state.unit_number,
         rent_amount: this.state.rent_amount,
         contact: this.state.contact,
         username: this.state.username,
-        rental_agreement: this.state.rental_agreement
+        lease: this.state.rental_agreement
     })
     .then(() => {
         console.log("Tenant Added");
