@@ -151,7 +151,7 @@ app.get("/login/:username", function (req, res) {
 })
 
 // when a new tenant request is sent
-app.post("/api/addtenant", function (req, res) {
+app.post("/addtenant", function (req, res) {
   // first we create the user in our firebase database for authentication purposes
   admin.auth().createUser({
     email: req.body.username,
@@ -167,7 +167,8 @@ app.post("/api/addtenant", function (req, res) {
         .then(() => {
           // verify their information in the database
           verifyInDatabase(newUser, false, res)
-            .then(() => {
+            .then((response) => {
+              res.json(response);
               // look up the newly created entry
               db.User
                 .findOne({

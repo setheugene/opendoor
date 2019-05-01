@@ -4,7 +4,7 @@ import { MessageListItem, MessageList } from "../components/MessageView";
 import API from "../utils/API";
 import ViewTenant from "../components/AdminViewTenant";
 import TenantForm from "../components/AdminAddTenant";
-
+import Time from "../components/Timer"
 
 class Homepage extends Component {
 
@@ -57,7 +57,7 @@ class Homepage extends Component {
 
             return (
                 <div>
-                    {/* <TenantForm /> */}
+                    <TenantForm />
                     <ViewTenant />
                     <Message />
                     <MessageList>
@@ -81,6 +81,7 @@ class Homepage extends Component {
                 <div>
                     <Message />
                     <MessageList>
+                        
                         {this.state.messages.map(message => {
                             return (
                                 <MessageListItem
@@ -92,6 +93,7 @@ class Homepage extends Component {
                             );
                         })}
                     </MessageList>
+                    <Time />
                 </div>
 
             )
