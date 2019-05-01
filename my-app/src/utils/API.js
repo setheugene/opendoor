@@ -1,5 +1,4 @@
 import axios from 'axios';
-import $ from 'jquery';
 
 const API = {
     insertPost:(postToInsert) => {
@@ -21,6 +20,13 @@ const API = {
             data: { 'token': token }
         }).then((res) => {
             console.log(res);
+        })
+    },
+    getCredentials: (username) => {
+        return axios({
+            method: "GET",
+            url: "/login/" + username,
+            data: { 'username': username }
         })
     }
 };

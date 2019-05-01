@@ -4,9 +4,6 @@ import { MessageListItem, MessageList } from "../components/MessageView";
 import API from "../utils/API";
 import ViewTenant from "../components/AdminViewTenant";
 import TenantForm from "../components/AdminAddTenant";
-import TenantHome from "../components/Card";
-import $ from 'jquery';
-
 
 
 class Homepage extends Component {
@@ -24,17 +21,14 @@ class Homepage extends Component {
     }
 
     getCredentials = (username) => {
-        $.ajax({
-            type: "GET",
-            url: "/login/" + username,
-            data: { 'username': username }
-        }).then((res) => {
-            this.setState({
-                username: res.username,
-                id: res.id,
-                admin_status: res.admin_status
+        API.getCredentials(username)
+            .then((res) => {
+                this.setState({
+                    username: res.data.username,
+                    id: res.data.id,
+                    admin_status: res.data.admin_status
+                })
             })
-        })
     }
 
     authenticateSession = () => {
@@ -64,7 +58,6 @@ class Homepage extends Component {
             return (
                 <div>
                     {/* <TenantForm /> */}
-                    <TenantHome />
                     <ViewTenant />
                     <Message />
                     <MessageList>
