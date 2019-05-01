@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import "./style.css";
-import $ from "jquery";
 
 import API from '../../utils/API';
 
@@ -19,17 +18,14 @@ class Message extends Component {
 
   // export this function and have it return an object
   getCredentials = (username) => {
-    $.ajax({
-      type: "GET",
-      url: "/login/" + username,
-      data: { 'username': username }
-    }).then((res) => {
-      this.setState({
-        username: res.username,
-        id: res.id,
-        admin_status: res.admin_status
+    API.getCredentials(username)
+      .then((res) => {
+        this.setState({
+          username: res.data.username,
+          id: res.data.id,
+          admin_status: res.data.admin_status
+        })
       })
-    })
   }
 
   authenticateSession = () => {
