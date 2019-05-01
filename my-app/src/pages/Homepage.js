@@ -66,8 +66,9 @@ class Homepage extends Component {
                                 <MessageListItem
                                     key={message.id}
                                     message_content={message.message_content}
-                                    username={message.username}
+                                    username={message.User.username}
                                     date={message.createdAt}
+                                    admin={message.User.admin_status}
                                 />
                             );
                         })}

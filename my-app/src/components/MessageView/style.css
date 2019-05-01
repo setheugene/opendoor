@@ -1,0 +1,18 @@
+#messages {
+    width: 50%;
+    background: #3a4660;
+    margin-top: 5px;
+    border-style: outset;
+    border-radius: 10px;
+    padding: 20px;
+    color: white;
+    box-shadow: 10px 10px 5px grey;
+    font-family: 'Karla', sans-serif;
+    font-size: 25px;
+}
+
+#date {
+    font-size: 13px;
+    float: right;
+    
+}

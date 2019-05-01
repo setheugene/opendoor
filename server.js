@@ -81,14 +81,13 @@ let verifyInDatabase = (data, admin, res) => {
           })
           .then((info) => {
             // and send back the relevant data for our state
-            console.log("account added, logging in");
+            console.log("account added");
             res.json(info)
           })
         // if we do find it, we send back the relevant data for our state
       } else if (found) {
         console.log("account found, logging in")
         res.json(found);
-
       }
     })
 }
