@@ -83,26 +83,8 @@ class Message extends Component {
 
   render() {
     return (
-      <div className="container">
+      <div className="container" id="messageForm">
         <form onSubmit={this.handleFormSubmit}>
-          <div className="form-message-post">
-            <label htmlFor="exampleInputEmail1">Name</label>
-            <input
-              type="text"
-              className="form-control"
-              id="message-name"
-              placeholder="Please Enter Your Name"
-            />
-          </div>
-          <div className="form-message-post">
-            <label htmlFor="exampleInputPassword1">Room Number</label>
-            <input
-              type="text"
-              className="form-control"
-              id="login-password"
-              placeholder="Room #"
-            />
-          </div>
           <div className="form-group">
             <label htmlFor="exampleFormControlTextarea1">Write a Message</label>
             <textarea
