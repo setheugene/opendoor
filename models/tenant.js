@@ -24,18 +24,21 @@ module.exports = function(sequelize, DataTypes) {
             validate: {
                 len: 9
             }
+        },
+        lease: {
+            type: DataTypes.STRING,
+            allowNull: false
         }
 
     });
 
-    // Tenant.associate = function(models) {
-    //     Tenant.belongsTo(models.User, {
-    //         foreignKey: {
-    //             name: 'user_id',
-    //             allowNull: false
-    //         }
-    //     });
-    // };
+    Tenant.associate = function(models) {
+        Tenant.belongsTo(models.User, {
+            foreignKey: {
+                allowNull: false
+            }
+        });
+    };
 
     return Tenant;
 }

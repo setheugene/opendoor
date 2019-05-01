@@ -49,7 +49,9 @@ module.exports = {
     // grabs a full list of our tenants from the database
     getAllTenants: function(req,res) {
         db.Tenant
-            .findAll({})
+            .findAll({
+                include: [db.User]
+            })
             .then((results) => {
                 res.json(results)
             })

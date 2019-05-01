@@ -165,11 +165,14 @@ app.post("/addtenant", function (req, res) {
       // set custom admin claims for our new user to be false by default
       admin.auth().setCustomUserClaims(newUser.uid, { admin: false })
         .then(() => {
-          // verify their information in the database
-          verifyInDatabase(newUser, false, res)
+          // create their information in the users table
+          db.User
+            .create({
+              username: newUser.email,
+              admin_status: false
+            })
             .then((response) => {
-              res.json(response);
-              // look up the newly created entry
+              // look up the newly created entry to get their id
               db.User
                 .findOne({
                   where: {
@@ -177,14 +180,16 @@ app.post("/addtenant", function (req, res) {
                   }
                 })
                 .then(function (userData) {
+                  // console.log(userData);
                   // actually add the new tenant information with a user id attached to reference later
                   let newUserId = userData.dataValues.id
                   db.Tenant
                     .create({
-                      real_name: req.body.name,
-                      unit_number: req.body.unit,
-                      rent_amount: req.body.rent,
+                      real_name: req.body.real_name,
+                      unit_number: req.body.unit_number,
+                      rent_amount: req.body.rent_amount,
                       contact: req.body.contact,
+                      lease: req.body.lease,
                       UserId: newUserId
                     })
                     .then((newTenant) => {
