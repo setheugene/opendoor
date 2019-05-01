@@ -8,7 +8,7 @@ const API = {
         return axios.get('/api/all/posts', posts)
     },
     addTenant:(newTenant) => {
-        return axios.post('/api/addtenant', newTenant)
+        return axios.post('/addtenant', newTenant)
     },
     getTenants: (tenantList) => {
         return axios.get('/api/addtenants', tenantList)
