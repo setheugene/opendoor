@@ -1,9 +1,34 @@
 import React, { Component } from "react";
+import PropTypes from 'prop-types';
 import "./style.css";
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
 
 import API from '../../utils/API';
 
 class Message extends Component {
+  constructor(props, context) {
+    super(props, context);
+
+    this.handleShow = this.handleShow.bind(this);
+    this.handleClose = this.handleClose.bind(this);
+
+    this.state = {
+      show: false,
+      username: "",
+      id: "",
+      admin_status: "",
+      message_content: "",
+    };
+  }
+
+  handleClose() {
+    this.setState({ show: false });
+  }
+
+  handleShow() {
+    this.setState({ show: true });
+  }
   // Setting the component's initial state
   state = {
     username: "",
@@ -82,28 +107,56 @@ class Message extends Component {
   };
 
   render() {
-    return (
-      <div className="container" id="messageForm">
-        <form onSubmit={this.handleFormSubmit}>
-          <div className="form-group">
-            <label htmlFor="exampleFormControlTextarea1">Write a Message</label>
-            <textarea
-              value={this.state.message_content}
-              onChange={this.handleInputChange}
 
-              name="message_content"
-              className="form-control"
-              id="exampleFormControlTextarea1"
-              rows="3"
-            />
-          </div>
-          <button type="submit" value="Submit" className="btn btn-primary">
-            Submit
+    return (
+
+      <div className="container" id="messageForm">
+        <button variant="primary" onClick={this.handleShow}>
+          Launch demo modal
+        </button>
+
+        <Modal show={this.state.show} onHide={this.handleClose}>
+          <Modal.Header closeButton>
+            <Modal.Title>Modal heading</Modal.Title>
+          </Modal.Header>
+          <Modal.Body><form onSubmit={this.handleFormSubmit}>
+            <div className="form-group">
+              <label htmlFor="exampleFormControlTextarea1">Write a Message</label>
+              <textarea
+                value={this.state.message_content}
+                onChange={this.handleInputChange}
+
+                name="message_content"
+                className="form-control"
+                id="exampleFormControlTextarea1"
+                rows="3"
+              />
+            </div>
+            <button type="submit" value="Submit" className="btn btn-primary">
+              Submit
           </button>
-        </form>
+          </form>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button variant="secondary" onClick={this.handleClose}>
+              Close
+            </Button>
+            <Button variant="primary" onClick={this.handleClose}>
+              Save Changes
+            </Button>
+          </Modal.Footer>
+        </Modal>
       </div>
+
     );
   }
 }
+
+Message.propTypes = {
+  onClose: PropTypes.func.isRequired,
+  show: PropTypes.bool,
+  children: PropTypes.node
+};
+
 
 export default Message;
