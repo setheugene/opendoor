@@ -15,8 +15,9 @@ function Login(props) {
                     <input type="password" value={props.password} onChange={props.handlePasswordChange} className="form-control" id="login-password" placeholder="Password"></input>
                 </div>
                 <div className="row">
-                    <button type="submit" value="Submit" className="btn btn-primary">Log In</button>
-                    <button type="submit" value="LogOut" className="btn btn-primary" id="btn-logout">Log Out</button>
+                    <button type="submit" value="Submit" className="col-md-5 btn btn-primary">Log In</button>
+                    <div className="col-md-2"></div>
+                    <button type="submit" value="LogOut" className="col-md-5 btn btn-primary" id="btn-logout">Log Out</button>
                 </div>
             </form>
         </div>
