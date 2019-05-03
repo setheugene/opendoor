@@ -4,12 +4,23 @@
     word-wrap: break-word;
     color: white;
     border-radius: 5px;
-    height: 50%;
+    height: 75%;
     margin-bottom: 200px;
     border-style: outset;
-    box-shadow: 10px 10px 5px grey;
+    box-shadow: 10px 10px 5px rgba(0, 0, 0, 0.4);
+    text-align: center;
     
 }
+
+.row {
+    margin: 0 auto;
+}
+
+
+.box {
+    padding: 25px;
+}
+
 
 h2 {
     border-bottom: white;
