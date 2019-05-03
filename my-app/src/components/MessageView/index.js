@@ -29,7 +29,7 @@ export function MessageListItem({ message_content, username, admin, date }) {
   console.log(print);
 
   return (
-    <div className="messageList">
+    <div className="container" id="tenant-view-cont">
       <li className="list-group-item" id="messages">
         <h5>
           Post from: {username}

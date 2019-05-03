@@ -16,3 +16,8 @@
     background: lightgrey;
     margin: 5px;
 }
+
+button {
+    background: #3a4660;
+    border-radius: 8px;
+}
