@@ -12,9 +12,11 @@ export default class Time extends React.Component {
         console.log(dueDate);
         
         return (
-            <div className="container">
-            <h1>Rent is Due in:</h1>
-            <Moment to={dueDate}>{now}</Moment>
+            <div className="background">
+            <div className="move row">
+            <p className="col-md-12">Rent is Due:   
+            <Moment  to={dueDate}>{now}</Moment></p>
+            </div>
             </div>
         );
     }
