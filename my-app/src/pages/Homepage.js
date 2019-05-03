@@ -5,7 +5,7 @@ import API from "../utils/API";
 import ViewTenant from "../components/AdminViewTenant";
 import TenantForm from "../components/AdminAddTenant";
 import Time from "../components/Timer"
-import TenantHome from "../components/Card";
+import "./style.css";
 
 class Homepage extends Component {
 
@@ -58,9 +58,14 @@ class Homepage extends Component {
 
             return (
                 <div>
-                    <TenantHome />
-                    <TenantForm />
-                    <Message />
+                    <div className="container" id="button-cont">
+                        <h1>Admin Utilites</h1>
+                        <div className="row" id="button-row">
+                            <div className="col-sm-4"> <Message />Add a Message</div>
+                            <div className="col-sm-4"> <TenantForm />Add a Tenant</div>
+                            <div className="col-sm-4"> <Message />View Documents</div>
+                        </div>
+                    </div>
                     <ViewTenant />
                     <MessageList>
                         {this.state.messages.map(message => {
@@ -83,7 +88,6 @@ class Homepage extends Component {
                 <div>
                     <Message />
                     <MessageList>
-
                         {this.state.messages.map(message => {
                             return (
                                 <MessageListItem
