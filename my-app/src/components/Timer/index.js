@@ -13,9 +13,9 @@ export default class Time extends React.Component {
         
         return (
             <div className="background">
-            <div className="move row">
-            <p className="col-md-12">Rent is Due:   
-            <Moment  to={dueDate}>{now}</Moment></p>
+            <div className="move">
+            <p className="">Rent is Due: <Moment  to={dueDate}>{now}</Moment></p>
+            
             </div>
             </div>
         );
