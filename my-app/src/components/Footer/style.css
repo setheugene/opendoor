@@ -7,3 +7,19 @@
     width:100%;
     border-top: outset black;
 }
+
+a{
+    color: black;
+}
+
+a:active{
+    color: black;
+}
+
+a:hover{
+    color: black;
+}
+
+a:visited {
+    color: black;
+}
