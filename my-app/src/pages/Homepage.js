@@ -2,10 +2,12 @@ import React, { Component } from "react";
 import Message from "../components/MessagePost";
 import { MessageListItem, MessageList } from "../components/MessageView";
 import API from "../utils/API";
-import ViewTenant from "../components/AdminViewTenant";
+import { ViewTenant, TenantList } from "../components/AdminViewTenant";
 import TenantForm from "../components/AdminAddTenant";
 import Time from "../components/Timer"
+import UpdateTenant from "../components/AdminUpdateTenant";
 import "./style.css";
+
 
 class Homepage extends Component {
 
@@ -13,12 +15,22 @@ class Homepage extends Component {
         username: "",
         id: "",
         admin_status: true,
-        messages: []
+        messages: [],
+        tenants: [],
+        toUpdate: {
+            real_name: '',
+            unit_number: '',
+            rent_amount: '',
+            rent_paid: '',
+            contact: '',
+            lease: '',
+        }
     }
 
     componentDidMount() {
         this.authenticateSession();
         this.populateMessages();
+        this.populateTenants();
     }
 
     getCredentials = (username) => {
@@ -35,7 +47,6 @@ class Homepage extends Component {
     authenticateSession = () => {
         let data = sessionStorage.getItem("firebase:authUser:AIzaSyAHG7wWYd4h2W2u4kbhLGRPpM5CtwBENJM:[DEFAULT]")
         let parsedData = JSON.parse(data);
-        // console.log(parsedData);
         let uid = parsedData.uid
         let email = parsedData.email
 
@@ -52,13 +63,73 @@ class Homepage extends Component {
     }
 
 
+    populateTenants = event => {
+        API.getTenants()
+            .then(res => this.setState({ tenants: res.data }))
+            .catch(err => console.log(err));
+    }
+
+    tenantToUpdate = filterId => {
+        let tenantToUpdate = this.state.tenants.find(tenant => tenant.id === filterId)
+        console.log(tenantToUpdate)
+        this.setState({ toUpdate: tenantToUpdate })
+    }
+
+    handleUpdateInputChange = event => {
+        let value = event.target.value;
+        const name = event.target.name;
+
+        this.setState({
+            toUpdate: {
+                ...this.state.toUpdate,
+                [name]: value,
+                rent_paid: event.target.checked
+            }
+        });
+    };
+
+    handleUpdateSubmit = event => {
+        event.preventDefault();
+        if (
+            !this.state.toUpdate.real_name ||
+            !this.state.toUpdate.unit_number ||
+            !this.state.toUpdate.rent_amount ||
+            !this.state.toUpdate.rent_paid ||
+            !this.state.toUpdate.contact ||
+            !this.state.toUpdate.lease
+        ) {
+            alert("Please fill out all required fields.");
+        } else {
+            this.sendUpdate();
+        }
+    }
+
+    sendUpdate = event => { 
+        console.log(this.state.toUpdate)
+        API.updateTenant({
+            id: this.state.toUpdate.id,
+            real_name: this.state.toUpdate.real_name,
+            unit_number: this.state.toUpdate.unit_number,
+            rent_amount: this.state.toUpdate.rent_amount,
+            rent_paid: this.state.toUpdate.rent_paid,
+            contact: this.state.toUpdate.contact,
+            lease: this.state.toUpdate.lease
+        })
+            .then(() => {
+                console.log("Updated tenant!");
+                alert("Updated!");
+            });
+    };
+
+
     render() {
 
-        if (this.state.admin_status === true) {
+        if (this.state.admin_status === true) { 
 
             return (
                 <div>
-                    <div className="container" id="button-cont">
+
+                     <div className="container" id="button-cont">
                         <h1>Admin Utilites</h1>
                         <div className="row" id="button-row">
                             <div className="col-sm-4"> <Message />Add a Message</div>
@@ -66,7 +137,31 @@ class Homepage extends Component {
                             <div className="col-sm-4"> <Message />View Documents</div>
                         </div>
                     </div>
-                    <ViewTenant />
+                    
+                    <TenantForm />
+                    <ViewTenant>
+                        {this.state.tenants.map(tenant => {
+                            return (
+                                <TenantList
+                                    key={tenant.id}
+                                    id={tenant.id}
+                                    tName={tenant.real_name}
+                                    tContact={tenant.contact}
+                                    tUnit={tenant.unit_number}
+                                    tRentPaid={tenant.rent_paid}
+                                    grabUpdate={() => this.tenantToUpdate(tenant.id)}
+                                />
+                            );
+                        })}
+                    </ViewTenant>
+
+                    <UpdateTenant
+                        tenantToUpdate={this.state.toUpdate}
+                        handleInput={this.handleUpdateInputChange}
+                        handleSubmit={this.handleUpdateSubmit}
+                        onClick={this.handleUpdateInputChange}
+                    />
+                    <Message />
                     <MessageList>
                         {this.state.messages.map(message => {
                             return (
@@ -88,6 +183,7 @@ class Homepage extends Component {
                 <div>
                     <Message />
                     <MessageList>
+
                         {this.state.messages.map(message => {
                             return (
                                 <MessageListItem
@@ -95,6 +191,7 @@ class Homepage extends Component {
                                     message_content={message.message_content}
                                     username={message.username}
                                     date={message.createdAt}
+                                    admin={message.User.admin_status}
                                 />
                             );
                         })}
@@ -106,6 +203,12 @@ class Homepage extends Component {
         }
     }
 };
+
+// ON CLICK OF UPDATE BUTTON, .FILTER THROUGH THIS.STATE.TENANTS FOR THE MATCHING ID
+// SET THIS TO A NEW OBJECT THAT GETS PASSED TO THE STATE OF THE FORM WITH THIS.PROPS.WHATEVER
+
+
+
 
 export default Homepage;
 

@@ -62,20 +62,21 @@ module.exports = {
 
     // update some tenant information
     updateTenant: function(req,res) {
+        console.log(req.body);
         db.Tenant
             .update({
-                real_name: req.body.name,
-                unit_number: req.body.unit,
-                rent_amount: req.body.rent,
-                contact: req.body.contact,
-                username: req.body.username,
-                rental_agreement: req.body.rental_agreement
+                real_name: req.body.tenant.real_name,
+                unit_number: req.body.tenant.unit_number,
+                rent_amount: req.body.tenant.rent_amount,
+                rent_paid: req.body.tenant.rent_paid,
+                contact: req.body.tenant.contact,
+                lease: req.body.tenant.lease
             }, {
                 where: {
-                    id: req.body.id
+                    id: req.body.tenant.id
                 }
             }).then((dbData) => {
-                console.log("Updating tenant info in DB at ID: " + req.body.id)
+                console.log("Updating tenant info in DB at ID: " + req.body.tenant.id)
                 res.json(dbData);
             })
     }
