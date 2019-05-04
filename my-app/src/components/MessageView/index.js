@@ -1,12 +1,13 @@
 import React from "react";
 import "./style.css";
+import API from '../../utils/API';
 
 export function MessageList({ children }) {
   return <ul className="list-group">{children}</ul>;
 }
 
 export function MessageListItem({ message_content, username, admin, date }) {
-    //split date from mysql database
+  //split date from mysql database
   var t = date.split(/[- T . :]/);
   console.log(t);
 
@@ -29,14 +30,13 @@ export function MessageListItem({ message_content, username, admin, date }) {
   console.log(print);
 
   return (
-    <div className="container" id="tenant-view-cont">
+    <div>
       <li className="list-group-item" id="messages">
-        <h5>
-          Post from: {username}
-          {admin}
-        </h5>
+        <p id="time">Posted on: {print} <button id="message-delete">X</button></p>
         <p id="message">{message_content}</p>
-        <p>{print}</p>
+        <p id="user-post">User: {username}
+          {admin}
+        </p>
       </li>
     </div>
   );

@@ -1,20 +1,60 @@
+
+#message-modal {
+    background: #7C889E; 
+}
+#message-modal-header {
+    background: #7C889E; 
+    color: white;
+}
+
+#message-delete {
+background: whitesmoke;
+float: right;
+padding: 0;
+color: red;
+border-style: none;
+}
+
+
 #messages {
-    width: 50%;
-    background: #3a4660;
+    background: whitesmoke;
     margin-top: 5px;
     border-style: outset;
     border-radius: 10px;
-    padding: 20px;
-    color: white;
-
-    box-shadow: 10px 10px 5px  rgba(0, 0, 0, 0.4);
-
+    color: black;
     font-family: 'Karla', sans-serif;
     font-size: 25px;
+    text-align: center;
+    margin-bottom: 15px;
 }
 
+#message-view-cont {
+    width: 60%;
+    background: #7C889E;
+    margin-top: 75px;
+    border-style: outset;
+    border-radius: 10px;
+    padding: 20px;
+    color: black;
+    box-shadow: 10px 10px 5px  rgba(0, 0, 0, 0.4);
+    font-family: 'Karla', sans-serif;
+    font-size: 25px;
+    text-align: center;
+    margin-bottom: 150px;
+}
 #date {
     font-size: 13px;
     float: right;
     
+}
+
+#user-post {
+    border-top:solid;
+    font-size: 20px;
+}
+
+#time {
+    font-family:'Sofia', cursive;
+    font-size: 20px;
+    border-bottom: solid;
 }
