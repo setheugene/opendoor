@@ -7,7 +7,7 @@ import TenantForm from "../components/AdminAddTenant";
 import Time from "../components/Timer"
 import "./styleadmin.css";
 import UpdateTenant from "../components/AdminUpdateTenant";
-import "./style.css";
+import "./styleadmin.css";
 
 
 class Homepage extends Component {
@@ -105,7 +105,7 @@ class Homepage extends Component {
         }
     }
 
-    sendUpdate = event => { 
+    sendUpdate = event => {
         console.log(this.state.toUpdate)
         API.updateTenant({
             id: this.state.toUpdate.id,
@@ -125,12 +125,12 @@ class Homepage extends Component {
 
     render() {
 
-        if (this.state.admin_status === true) { 
+        if (this.state.admin_status === true) {
 
             return (
                 <div>
 
-                     <div className="container" id="button-cont">
+                    <div className="container" id="button-cont">
                         <h1>Admin Utilites</h1>
                         <div className="row" id="button-row">
                             <div className="col-sm-4"> <Message />Add a Message</div>
@@ -138,6 +138,21 @@ class Homepage extends Component {
                             <div className="col-sm-4"> <Message />View Documents</div>
                         </div>
                     </div>
+                    <ViewTenant>
+                        {this.state.tenants.map(tenant => {
+                            return (
+                                <TenantList
+                                    key={tenant.id}
+                                    id={tenant.id}
+                                    tName={tenant.real_name}
+                                    tContact={tenant.contact}
+                                    tUnit={tenant.unit_number}
+                                    tRentPaid={tenant.rent_paid}
+                                    grabUpdate={() => this.tenantToUpdate(tenant.id)}
+                                />
+                            );
+                        })}
+                    </ViewTenant>
                     <div className="container" id="message-view-cont">
                         <h1>Message Board</h1>
                         <MessageList>
@@ -154,43 +169,7 @@ class Homepage extends Component {
                             })}
                         </MessageList>
                     </div>
-                    <TenantForm />
-                    <ViewTenant>
-                        {this.state.tenants.map(tenant => {
-                            return (
-                                <TenantList
-                                    key={tenant.id}
-                                    id={tenant.id}
-                                    tName={tenant.real_name}
-                                    tContact={tenant.contact}
-                                    tUnit={tenant.unit_number}
-                                    tRentPaid={tenant.rent_paid}
-                                    grabUpdate={() => this.tenantToUpdate(tenant.id)}
-                                />
-                            );
-                        })}
-                    </ViewTenant>
 
-                    <UpdateTenant
-                        tenantToUpdate={this.state.toUpdate}
-                        handleInput={this.handleUpdateInputChange}
-                        handleSubmit={this.handleUpdateSubmit}
-                        onClick={this.handleUpdateInputChange}
-                    />
-                    <Message />
-                    <MessageList>
-                        {this.state.messages.map(message => {
-                            return (
-                                <MessageListItem
-                                    key={message.id}
-                                    message_content={message.message_content}
-                                    username={message.User.username}
-                                    date={message.createdAt}
-                                    admin={message.User.admin_status}
-                                />
-                            );
-                        })}
-                    </MessageList>
                 </div>
             )
         } else if (this.state.admin_status === false) {
