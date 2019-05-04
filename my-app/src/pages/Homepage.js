@@ -6,6 +6,8 @@ import { ViewTenant, TenantList } from "../components/AdminViewTenant";
 import TenantForm from "../components/AdminAddTenant";
 import Time from "../components/Timer"
 import UpdateTenant from "../components/AdminUpdateTenant";
+import "./style.css";
+
 
 class Homepage extends Component {
 
@@ -126,6 +128,16 @@ class Homepage extends Component {
 
             return (
                 <div>
+
+                     <div className="container" id="button-cont">
+                        <h1>Admin Utilites</h1>
+                        <div className="row" id="button-row">
+                            <div className="col-sm-4"> <Message />Add a Message</div>
+                            <div className="col-sm-4"> <TenantForm />Add a Tenant</div>
+                            <div className="col-sm-4"> <Message />View Documents</div>
+                        </div>
+                    </div>
+                    
                     <TenantForm />
                     <ViewTenant>
                         {this.state.tenants.map(tenant => {
@@ -149,7 +161,6 @@ class Homepage extends Component {
                         handleSubmit={this.handleUpdateSubmit}
                         onClick={this.handleUpdateInputChange}
                     />
-
                     <Message />
                     <MessageList>
                         {this.state.messages.map(message => {

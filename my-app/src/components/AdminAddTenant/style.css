@@ -6,7 +6,7 @@
     border-radius: 10px;
     padding: 20px;
     color: white;
-    box-shadow: 10px 10px 5px grey;
+    box-shadow: 10px 10px 5px  rgba(0, 0, 0, 0.4);
     font-family: 'Karla', sans-serif;
     font-size: 25px;
     
@@ -15,4 +15,9 @@
 .form-control {
     background: lightgrey;
     margin: 5px;
+}
+
+button {
+    background: #3a4660;
+    border-radius: 8px;
 }
