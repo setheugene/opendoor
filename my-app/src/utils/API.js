@@ -14,7 +14,7 @@ const API = {
         return axios.post('/addtenant', newTenant)
     },
     getTenants: (tenantList) => {
-        return axios.get('/api/addtenants', tenantList)
+        return axios.get('/api/all/tenants', tenantList)
     },
     sendCredentials: (token) => {
         return axios({
@@ -30,6 +30,13 @@ const API = {
             method: "GET",
             url: "/login/" + username,
             data: { 'username': username }
+        })
+    },
+    updateTenant: (tenant) => {
+        return axios({
+            method: "PUT",
+            url: "/api/all/tenants",
+            data: { tenant }
         })
     }
 };

@@ -1,0 +1,55 @@
+
+
+.background {
+    background-color: #3A4660;
+    height: 60px;
+    overflow: hidden;
+}
+
+.move {
+    color: white;
+    text-decoration: none;
+    position: relative;
+    top: 5px;
+    left: 0;
+    animation: moveAcross 4s linear infinite;
+    font-size: 35px;
+    animation-delay: -3s;
+    animation-duration: 10s;
+    width: 370px;
+  }
+  .alert {
+    color: #FF6701;
+    top: -5px;
+}
+
+@keyframes moveAcross {
+    0% {
+      left: -100px;
+    }
+    100% {
+      left: 100%;
+    }
+  }
+
+  /* @-webkit-keyframes moveAcross {
+    0% {
+      left: -100px;
+    }
+    100% {
+      left: 100%;
+    }
+  } */
+
+
+  /* {
+    from {
+      margin-left: 100%;
+      width: 300%; 
+    }
+  
+    to {
+      margin-left: 0%;
+      width: 100%;
+    }
+  } */
