@@ -7,6 +7,9 @@ const API = {
     getPosts:(posts)=> {
         return axios.get('/api/all/posts', posts)
     },
+    delete:(posts)=> {
+        return axios.delete('/api/all/posts', posts)
+    },
     addTenant:(newTenant) => {
         return axios.post('/addtenant', newTenant)
     },

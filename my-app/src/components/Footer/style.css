@@ -1,25 +1,10 @@
 .page-footer {
-    background:#ed8a63;
+    background:#FB843D;
     position: fixed;
     left: 0;
     bottom: 0;
     height: 5%;
     width:100%;
     border-top: outset black;
-}
-
-a{
-    color: black;
-}
-
-a:active{
-    color: black;
-}
-
-a:hover{
-    color: black;
-}
-
-a:visited {
-    color: black;
+    z-index: 100;
 }

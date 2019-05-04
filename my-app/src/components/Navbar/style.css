@@ -1,7 +1,8 @@
 .navbar {
     position: fixed;
-    background: #ed8a63;
-    border-style: outset black;
+    background: #FB843D;
+    border-bottom: solid;
+    border-color: black;
     font-family: 'Pacifico', cursive;
     color: white;
     top: 0;

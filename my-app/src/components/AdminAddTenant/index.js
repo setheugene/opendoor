@@ -80,7 +80,7 @@ class TenantForm extends Component {
   render() {
     return (
       <div>
-        <button className="fas fa-address-card fa-7x" onClick={this.handleShow}></button>
+        <button className="fas fa-address-card fa-7x" id="card-button" onClick={this.handleShow}></button>
         <Modal show={this.state.show} onHide={this.handleClose}>
           <Modal.Header closeButton>
             <Modal.Title>Add a New Tenant</Modal.Title>

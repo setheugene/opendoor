@@ -101,14 +101,14 @@ class Message extends Component {
 
     return (
         <div>
-          <button className="fas fa-envelope fa-7x" onClick={this.handleShow}></button>
-          <Modal show={this.state.show} onHide={this.handleClose}>
-            <Modal.Header closeButton>
+          <button className="fas fa-envelope fa-7x" id="card-button" onClick={this.handleShow}></button>
+          <Modal show={this.state.show} onHide={this.handleClose} >
+            <Modal.Header id="message-modal-header" closeButton>
               <Modal.Title>Post a New Message</Modal.Title>
             </Modal.Header>
-            <Modal.Body><form onSubmit={this.handleFormSubmit}>
+            <Modal.Body id="message-modal"><form onSubmit={this.handleFormSubmit}>
               <div className="form-group">
-                <label htmlFor="exampleFormControlTextarea1">Write a Message</label>
+                <label htmlFor="exampleFormControlTextarea1"></label>
                 <textarea
                   value={this.state.message_content}
                   onChange={this.handleInputChange}
@@ -122,9 +122,9 @@ class Message extends Component {
               <button type="submit" value="Submit" className="btn btn-primary">
                 Post
           </button>
-            </form>
+            </form> 
             </Modal.Body>
-            <Modal.Footer>
+            <Modal.Footer id="message-modal">
               <Button variant="secondary" onClick={this.handleClose}>
                 Close
             </Button>
