@@ -122,6 +122,11 @@ class Homepage extends Component {
             });
     };
 
+    delPost = id => {
+        console.log(id)
+        API.deletePost(id)
+    }
+
 
     render() {
 
@@ -164,6 +169,7 @@ class Homepage extends Component {
                                         username={message.User.username}
                                         date={message.createdAt}
                                         admin={message.User.admin_status}
+                                        onClick={() => this.delPost(message.id)}
                                     />
                                 );
                             })}
@@ -199,20 +205,7 @@ class Homepage extends Component {
                             })}
                         </MessageList>
                     </div>
-                    <Message />
-                    <MessageList>
-                        {this.state.messages.map(message => {
-                            return (
-                                <MessageListItem
-                                    key={message.id}
-                                    message_content={message.message_content}
-                                    username={message.username}
-                                    date={message.createdAt}
-                                    admin={message.User.admin_status}
-                                />
-                            );
-                        })}
-                    </MessageList>
+                    
                     <Time />
                 </div>
 
