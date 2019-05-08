@@ -7,7 +7,7 @@ import TenantForm from "../components/AdminAddTenant";
 import Time from "../components/Timer"
 import "./styleadmin.css";
 import UpdateTenant from "../components/AdminUpdateTenant";
-import "./style.css";
+import "./styleadmin.css";
 
 
 class Homepage extends Component {
@@ -72,65 +72,28 @@ class Homepage extends Component {
 
     tenantToUpdate = filterId => {
         let tenantToUpdate = this.state.tenants.find(tenant => tenant.id === filterId)
-        console.log(tenantToUpdate)
+        // console.log(tenantToUpdate)
         this.setState({ toUpdate: tenantToUpdate })
+        // console.log(this.state.toUpdate)
     }
 
-    handleUpdateInputChange = event => {
-        let value = event.target.value;
-        const name = event.target.name;
-
-        this.setState({
-            toUpdate: {
-                ...this.state.toUpdate,
-                [name]: value,
-                rent_paid: event.target.checked
-            }
-        });
-    };
-
-    handleUpdateSubmit = event => {
-        event.preventDefault();
-        if (
-            !this.state.toUpdate.real_name ||
-            !this.state.toUpdate.unit_number ||
-            !this.state.toUpdate.rent_amount ||
-            !this.state.toUpdate.rent_paid ||
-            !this.state.toUpdate.contact ||
-            !this.state.toUpdate.lease
-        ) {
-            alert("Please fill out all required fields.");
-        } else {
-            this.sendUpdate();
-        }
+    delPost = id => {
+        console.log(id)
+        API.deletePost(id)
     }
-
-    sendUpdate = event => { 
-        console.log(this.state.toUpdate)
-        API.updateTenant({
-            id: this.state.toUpdate.id,
-            real_name: this.state.toUpdate.real_name,
-            unit_number: this.state.toUpdate.unit_number,
-            rent_amount: this.state.toUpdate.rent_amount,
-            rent_paid: this.state.toUpdate.rent_paid,
-            contact: this.state.toUpdate.contact,
-            lease: this.state.toUpdate.lease
-        })
-            .then(() => {
-                console.log("Updated tenant!");
-                alert("Updated!");
-            });
-    };
 
 
     render() {
 
-        if (this.state.admin_status === true) { 
+        // console.log(this.state.toUpdate);
+
+
+        if (this.state.admin_status === true) {
 
             return (
                 <div>
 
-                     <div className="container" id="button-cont">
+                    <div className="container" id="button-cont">
                         <h1>Admin Utilites</h1>
                         <div className="row" id="button-row">
                             <div className="col-sm-4"> <Message />Add a Message</div>
@@ -138,23 +101,6 @@ class Homepage extends Component {
                             <div className="col-sm-4"> <Message />View Documents</div>
                         </div>
                     </div>
-                    <div className="container" id="message-view-cont">
-                        <h1>Message Board</h1>
-                        <MessageList>
-                            {this.state.messages.map(message => {
-                                return (
-                                    <MessageListItem
-                                        key={message.id}
-                                        message_content={message.message_content}
-                                        username={message.User.username}
-                                        date={message.createdAt}
-                                        admin={message.User.admin_status}
-                                    />
-                                );
-                            })}
-                        </MessageList>
-                    </div>
-                    <TenantForm />
                     <ViewTenant>
                         {this.state.tenants.map(tenant => {
                             return (
@@ -166,31 +112,29 @@ class Homepage extends Component {
                                     tUnit={tenant.unit_number}
                                     tRentPaid={tenant.rent_paid}
                                     grabUpdate={() => this.tenantToUpdate(tenant.id)}
+                                    updating={this.state.toUpdate}
                                 />
                             );
                         })}
                     </ViewTenant>
+                    <div className="container" id="message-view-cont">
+                        <h1>Message Board</h1>
+                        <MessageList>
+                            {this.state.messages.map(message => {
+                                return (
+                                    <MessageListItem
+                                        key={message.id}
+                                        message_content={message.message_content}
+                                        username={message.User.username}
+                                        date={message.createdAt}
+                                        admin={message.User.admin_status}
+                                        onClick={() => this.delPost(message.id)}
+                                    />
+                                );
+                            })}
+                        </MessageList>
+                    </div>
 
-                    <UpdateTenant
-                        tenantToUpdate={this.state.toUpdate}
-                        handleInput={this.handleUpdateInputChange}
-                        handleSubmit={this.handleUpdateSubmit}
-                        onClick={this.handleUpdateInputChange}
-                    />
-                    <Message />
-                    <MessageList>
-                        {this.state.messages.map(message => {
-                            return (
-                                <MessageListItem
-                                    key={message.id}
-                                    message_content={message.message_content}
-                                    username={message.User.username}
-                                    date={message.createdAt}
-                                    admin={message.User.admin_status}
-                                />
-                            );
-                        })}
-                    </MessageList>
                 </div>
             )
         } else if (this.state.admin_status === false) {
@@ -220,20 +164,7 @@ class Homepage extends Component {
                             })}
                         </MessageList>
                     </div>
-                    <Message />
-                    <MessageList>
-                        {this.state.messages.map(message => {
-                            return (
-                                <MessageListItem
-                                    key={message.id}
-                                    message_content={message.message_content}
-                                    username={message.username}
-                                    date={message.createdAt}
-                                    admin={message.User.admin_status}
-                                />
-                            );
-                        })}
-                    </MessageList>
+                    
                     <Time />
                 </div>
 
@@ -249,4 +180,3 @@ class Homepage extends Component {
 
 
 export default Homepage;
-

@@ -32,9 +32,9 @@ export function MessageListItem({ message_content, username, admin, date }) {
   return (
     <div>
       <li className="list-group-item" id="messages">
-        <p id="time">Posted on: {print} <button id="message-delete">X</button></p>
+        <p id="time">{print} <button id="message-delete" className="fas fa-map-pin"></button></p>
         <p id="message">{message_content}</p>
-        <p id="user-post">User: {username}
+        <p id="user-post">{username}
           {admin}
         </p>
       </li>

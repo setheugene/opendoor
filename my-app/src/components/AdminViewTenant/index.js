@@ -1,5 +1,6 @@
 import React from "react";
 import "./style.css";
+import UpdateTenant from "../AdminUpdateTenant"
 
 export function ViewTenant({ children }) {
     return (
@@ -24,7 +25,9 @@ export function ViewTenant({ children }) {
 }
 
 
-export function TenantList({ tName, tContact, tUnit, tRentPaid, id, grabUpdate }) {
+export function TenantList({ tName, tContact, tUnit, tRentPaid, id, grabUpdate, updating }) {
+
+    // console.log(updating);
     let rentCheck = "";
     if (tRentPaid) {
         rentCheck = "paid"
@@ -39,14 +42,12 @@ export function TenantList({ tName, tContact, tUnit, tRentPaid, id, grabUpdate }
             <td>{tUnit}</td>
             <td>{rentCheck}</td>
             <td>
-                <button
-                    type="submit"
+                <UpdateTenant
                     value={id}
-                    onClick={grabUpdate}>
-                    Update
-                </button>
+                    onClick={grabUpdate}
+                    tenantToUpdate={updating}/>
+                
             </td>
         </tr>
     );
 }
-
