@@ -6,7 +6,7 @@ export function MessageList({ children }) {
   return <ul className="list-group">{children}</ul>;
 }
 
-export function MessageListItem({ message_content, username, admin, date }) {
+export function MessageListItem({ message_content, username, admin, date, onClick }) {
   //split date from mysql database
   var t = date.split(/[- T . :]/);
   console.log(t);
@@ -33,6 +33,12 @@ export function MessageListItem({ message_content, username, admin, date }) {
     <div>
       <li className="list-group-item" id="messages">
         <p id="time">{print} <button id="message-delete" className="fas fa-map-pin"></button></p>
+        <p id="time">Posted on: {print}
+          <button id="message-delete"
+                  onClick={onClick}>
+          </button>
+
+        </p>
         <p id="message">{message_content}</p>
         <p id="user-post">{username}
           {admin}

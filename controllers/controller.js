@@ -31,11 +31,11 @@ module.exports = {
 
     // delete a post from our specified user
     deletePost: function(req, res) {
+        console.log(req.params);
         db.Message
             .destroy({
                 where: {
-                    UserId: req.params.id,
-                    createdAt: req.body.createdAt
+                    id: req.params.id
                 }
             })
             .then((dbData) => {

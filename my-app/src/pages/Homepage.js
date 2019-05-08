@@ -82,12 +82,33 @@ class Homepage extends Component {
         API.deletePost(id)
     }
 
-
     render() {
 
         // console.log(this.state.toUpdate);
+    sendUpdate = event => {
+        console.log(this.state.toUpdate)
+        API.updateTenant({
+            id: this.state.toUpdate.id,
+            real_name: this.state.toUpdate.real_name,
+            unit_number: this.state.toUpdate.unit_number,
+            rent_amount: this.state.toUpdate.rent_amount,
+            rent_paid: this.state.toUpdate.rent_paid,
+            contact: this.state.toUpdate.contact,
+            lease: this.state.toUpdate.lease
+        })
+            .then(() => {
+                console.log("Updated tenant!");
+                alert("Updated!");
+            });
+    };
+
+    delPost = id => {
+        console.log(id)
+        API.deletePost(id)
+    }
 
 
+    render() {
         if (this.state.admin_status === true) {
 
             return (
@@ -104,6 +125,10 @@ class Homepage extends Component {
                     <ViewTenant>
                         {this.state.tenants.map(tenant => {
                             return (
+                    
+                    <ViewTenant>
+                        {this.state.tenants.map(tenant => {
+                            return (
                                 <TenantList
                                     key={tenant.id}
                                     id={tenant.id}
@@ -114,6 +139,11 @@ class Homepage extends Component {
                                     grabUpdate={() => this.tenantToUpdate(tenant.id)}
                                     updating={this.state.toUpdate}
                                 />
+                            );
+                        })}
+                    </ViewTenant>
+                                />
+                                
                             );
                         })}
                     </ViewTenant>

@@ -7,11 +7,11 @@ function Login(props) {
             <form onSubmit={props.handleLoginClick}>
                 <h1>Login or Create an Account</h1>
                 <div className="form-login">
-                    <label htmlFor="exampleInputEmail1">Email address</label>
+                    <label className="subheader" htmlFor="exampleInputEmail1">Email address</label>
                     <input type="email" value={props.email} onChange={props.handleEmailChange} className="form-control" id="login-email" placeholder="Enter email"></input>
                 </div>
                 <div className="form-login">
-                    <label htmlFor="exampleInputPassword1">Password</label>
+                    <label className="subheader" htmlFor="exampleInputPassword1">Password</label>
                     <input type="password" value={props.password} onChange={props.handlePasswordChange} className="form-control" id="login-password" placeholder="Password"></input>
                 </div>
                 <div className="row">
