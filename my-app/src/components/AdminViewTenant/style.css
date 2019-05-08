@@ -1,4 +1,27 @@
 #tenant-view-cont {
+    width: 100%;
+    background: #3a4660;
+    margin-top: 75px;
+    border-style: outset;
+    border-radius: 10px;
+    padding: 20px;
+    color: white;
+    box-shadow: 10px 10px 5px  rgba(0, 0, 0, 0.4);
+    font-family: 'Karla', sans-serif;
+    font-size: 25px;
+    text-align: center;
+    
+}
+
+thead {
+    color: white;
+}
+
+tbody {
+    color: white;
+    font-size:20px;
+}
+
   width: 60%;
   background: #7c889e;
   margin-top: 75px;

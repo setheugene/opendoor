@@ -72,39 +72,19 @@ class Homepage extends Component {
 
     tenantToUpdate = filterId => {
         let tenantToUpdate = this.state.tenants.find(tenant => tenant.id === filterId)
-        console.log(tenantToUpdate)
+        // console.log(tenantToUpdate)
         this.setState({ toUpdate: tenantToUpdate })
+        // console.log(this.state.toUpdate)
     }
 
-    handleUpdateInputChange = event => {
-        let value = event.target.value;
-        const name = event.target.name;
-
-        this.setState({
-            toUpdate: {
-                ...this.state.toUpdate,
-                [name]: value,
-                rent_paid: event.target.checked
-            }
-        });
-    };
-
-    handleUpdateSubmit = event => {
-        event.preventDefault();
-        if (
-            !this.state.toUpdate.real_name ||
-            !this.state.toUpdate.unit_number ||
-            !this.state.toUpdate.rent_amount ||
-            !this.state.toUpdate.rent_paid ||
-            !this.state.toUpdate.contact ||
-            !this.state.toUpdate.lease
-        ) {
-            alert("Please fill out all required fields.");
-        } else {
-            this.sendUpdate();
-        }
+    delPost = id => {
+        console.log(id)
+        API.deletePost(id)
     }
 
+    render() {
+
+        // console.log(this.state.toUpdate);
     sendUpdate = event => {
         console.log(this.state.toUpdate)
         API.updateTenant({
@@ -129,7 +109,6 @@ class Homepage extends Component {
 
 
     render() {
-
         if (this.state.admin_status === true) {
 
             return (
@@ -143,11 +122,13 @@ class Homepage extends Component {
                             <div className="col-sm-4"> <Message />View Documents</div>
                         </div>
                     </div>
+                    <ViewTenant>
+                        {this.state.tenants.map(tenant => {
+                            return (
                     
                     <ViewTenant>
                         {this.state.tenants.map(tenant => {
                             return (
-                                
                                 <TenantList
                                     key={tenant.id}
                                     id={tenant.id}
@@ -156,12 +137,16 @@ class Homepage extends Component {
                                     tUnit={tenant.unit_number}
                                     tRentPaid={tenant.rent_paid}
                                     grabUpdate={() => this.tenantToUpdate(tenant.id)}
+                                    updating={this.state.toUpdate}
+                                />
+                            );
+                        })}
+                    </ViewTenant>
                                 />
                                 
                             );
                         })}
                     </ViewTenant>
-                    
                     <div className="container" id="message-view-cont">
                         <h1>Message Board</h1>
                         <MessageList>
@@ -225,4 +210,3 @@ class Homepage extends Component {
 
 
 export default Homepage;
-

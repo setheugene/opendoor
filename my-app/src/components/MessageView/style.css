@@ -1,24 +1,25 @@
 
 #message-modal {
-    background: #7C889E; 
+    background: #3a4660; 
 }
 #message-modal-header {
-    background: #7C889E; 
+    background: #3a4660; 
     color: white;
 }
 
 #message-delete {
-background: whitesmoke;
+background: #c9af98;
 float: right;
 padding: 0;
-color: red;
+color: black;
 border-style: none;
 }
 
 
 #messages {
-    background: whitesmoke;
+    background: #c9af98;
     margin-top: 5px;
+    width: 100%;
     border-style: outset;
     border-radius: 10px;
     color: black;
@@ -26,18 +27,19 @@ border-style: none;
     font-size: 25px;
     text-align: center;
     margin-bottom: 15px;
+
 }
 
 #message-view-cont {
-    width: 60%;
-    background: #7C889E;
+    width: 100%;
+    background: #3a4660;
     margin-top: 75px;
     border-style: outset;
     border-radius: 10px;
     padding: 20px;
-    color: black;
+    color: white;
     box-shadow: 10px 10px 5px  rgba(0, 0, 0, 0.4);
-    font-family: 'Karla', sans-serif;
+    font-family: 'Roboto Slab', serif;
     font-size: 25px;
     text-align: center;
     margin-bottom: 150px;
@@ -54,7 +56,7 @@ border-style: none;
 }
 
 #time {
-    font-family:'Sofia', cursive;
+    font-family: 'Roboto Slab', serif;
     font-size: 20px;
     border-bottom: solid;
 }
