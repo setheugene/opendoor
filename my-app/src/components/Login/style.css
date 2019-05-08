@@ -8,10 +8,6 @@
     
 }
 
-
-
-
-
 .btn:hover {
     border-color: #3a4660;
     box-shadow: 5px 5px 5px #3a4660;
@@ -39,3 +35,19 @@ h1 {
     border-bottom: solid white;
     margin-bottom: 15px;
 }
+
+@media only screen and (max-width: 770px) {
+    .btn {
+        width: 100%;
+    }
+    h1 {
+        font-size: 80%;
+    }
+    .subheader {
+        font-size: 65%;
+        
+    }
+    #login-cont {
+        width: 80%;
+    }
+  }

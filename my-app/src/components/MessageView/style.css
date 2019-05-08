@@ -58,3 +58,40 @@ border-style: none;
     font-size: 20px;
     border-bottom: solid;
 }
+
+@media only screen and (max-width: 900px) {
+    #message {
+      font-size: 15px;
+    }
+    #time {
+        font-size: 15px;
+    }
+    #user-post {
+        font-size: 15px;
+    }
+  }
+  
+  @media only screen and (max-width: 667px) {
+    #message {
+      font-size: 10px;
+    }
+    #time {
+        font-size: 10px;
+    }
+    #user-post {
+        font-size: 10px;
+    }
+  }
+  
+  
+  @media only screen and (max-width: 400px) {
+      #message {
+        font-size: 7px;
+      }
+      #time {
+          font-size: 7px;
+      }
+      #user-post {
+          font-size: 7px;
+      }
+    }

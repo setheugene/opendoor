@@ -143,9 +143,11 @@ class Homepage extends Component {
                             <div className="col-sm-4"> <Message />View Documents</div>
                         </div>
                     </div>
+                    
                     <ViewTenant>
                         {this.state.tenants.map(tenant => {
                             return (
+                                
                                 <TenantList
                                     key={tenant.id}
                                     id={tenant.id}
@@ -155,9 +157,11 @@ class Homepage extends Component {
                                     tRentPaid={tenant.rent_paid}
                                     grabUpdate={() => this.tenantToUpdate(tenant.id)}
                                 />
+                                
                             );
                         })}
                     </ViewTenant>
+                    
                     <div className="container" id="message-view-cont">
                         <h1>Message Board</h1>
                         <MessageList>

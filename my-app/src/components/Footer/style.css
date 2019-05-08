@@ -8,3 +8,28 @@
     border-top: outset black;
     z-index: 100;
 }
+
+a:link {
+    color: black;
+}
+
+a:hover {
+    color: black;
+}
+
+a:active {
+    color: black;
+}
+
+a:visited {
+    color: black;
+}
+
+  @media only screen and (max-width: 470px) {
+
+    .page-footer {
+        height: 50px;
+        font-size: 12px;
+    }
+
+}

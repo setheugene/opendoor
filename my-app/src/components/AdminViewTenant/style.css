@@ -1,13 +1,55 @@
 #tenant-view-cont {
-    width: 60%;
-    background: #7C889E;
-    margin-top: 75px;
-    border-style: outset;
-    border-radius: 10px;
-    padding: 20px;
-    color: white;
-    box-shadow: 10px 10px 5px  rgba(0, 0, 0, 0.4);
-    font-family: 'Karla', sans-serif;
-    font-size: 25px;
-    
+  width: 60%;
+  background: #7c889e;
+  margin-top: 75px;
+  border-style: outset;
+  border-radius: 10px;
+  padding: 20px;
+  color: white;
+  box-shadow: 10px 10px 5px rgba(0, 0, 0, 0.4);
+  font-family: "Karla", sans-serif;
+  font-size: 25px;
 }
+
+@media only screen and (max-width: 900px) {
+  #tenant-view-cont {
+    width: 80%;
+  }
+
+  th {
+    font-size: 15px;
+  }
+
+  td {
+      font-size: 15px;
+  }
+}
+
+@media only screen and (max-width: 667px) {
+  #tenant-view-cont {
+    width: 80%;
+  }
+
+  th {
+    font-size: 10px;
+  }
+
+  td {
+      font-size: 10px;
+  }
+}
+
+
+@media only screen and (max-width: 400px) {
+    #tenant-view-cont {
+      width: 80%;
+    }
+  
+    th {
+      font-size: 7px;
+    }
+  
+    td {
+        font-size: 7px;
+    }
+  }
