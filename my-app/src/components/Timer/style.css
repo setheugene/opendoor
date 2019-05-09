@@ -1,11 +1,11 @@
 
-
 .background {
     background-color: #3A4660;
     height: 60px;
     overflow: hidden;
     position: fixed;
     width: 100%;
+    bottom: 43px;
 }
 
 .move {
