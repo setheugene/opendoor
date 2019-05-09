@@ -1,3 +1,14 @@
-.container {
-    background: white;
+#info-cont {
+    width: 100%;
+    background: #3a4660;
+    margin-top: 75px;
+    border-style: outset;
+    border-radius: 10px;
+    padding: 20px;
+    color: white;
+    box-shadow: 10px 10px 5px  rgba(0, 0, 0, 0.4);
+    font-family: 'Roboto Slab', serif;
+    font-size: 25px;
+    text-align: center;
+    margin-bottom: 150px;
 }
