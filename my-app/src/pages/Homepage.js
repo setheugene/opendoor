@@ -145,26 +145,20 @@ class Homepage extends Component {
                             <ViewTenant>
                                 {this.state.tenants.map(tenant => {
                                     return (
-                                        <ViewTenant>
-                                            {this.state.tenants.map(tenant => {
-                                                return (
-                                                    <TenantList
-                                                        key={tenant.id}
-                                                        id={tenant.id}
-                                                        tName={tenant.real_name}
-                                                        tContact={tenant.contact}
-                                                        tUnit={tenant.unit_number}
-                                                        tRentPaid={tenant.rent_paid}
-                                                        grabUpdate={() => this.tenantToUpdate(tenant.id)}
-                                                        updating={this.state.toUpdate}
-                                                    />
-                                                );
-                                            })}
-                                        </ViewTenant>
-
+                                        <TenantList
+                                            key={tenant.id}
+                                            id={tenant.id}
+                                            tName={tenant.real_name}
+                                            tContact={tenant.contact}
+                                            tUnit={tenant.unit_number}
+                                            tRentPaid={tenant.rent_paid}
+                                            grabUpdate={() => this.tenantToUpdate(tenant.id)}
+                                            updating={this.state.toUpdate}
+                                        />
                                     );
                                 })}
                             </ViewTenant>
+                            );
                         </div>
                     </div>
 
