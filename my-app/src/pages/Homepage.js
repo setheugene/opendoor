@@ -8,6 +8,8 @@ import Time from "../components/Timer"
 import "./styleadmin.css";
 import UpdateTenant from "../components/AdminUpdateTenant";
 import "./styleadmin.css";
+import TenantInfo from "../components/TenantInfo";
+import Maintenance from "../components/TenantMaintenance";
 
 
 class Homepage extends Component {
@@ -82,9 +84,7 @@ class Homepage extends Component {
         API.deletePost(id)
     }
 
-    render() {
-
-        // console.log(this.state.toUpdate);
+    // console.log(this.state.toUpdate);
     sendUpdate = event => {
         console.log(this.state.toUpdate)
         API.updateTenant({
@@ -113,7 +113,6 @@ class Homepage extends Component {
 
             return (
                 <div>
-
                     <div className="container" id="button-cont">
                         <h1>Admin Utilites</h1>
                         <div className="row" id="button-row">
@@ -122,47 +121,51 @@ class Homepage extends Component {
                             <div className="col-sm-4"> <Message />View Documents</div>
                         </div>
                     </div>
-                    <ViewTenant>
-                        {this.state.tenants.map(tenant => {
-                            return (
-                    
-                    <ViewTenant>
-                        {this.state.tenants.map(tenant => {
-                            return (
-                                <TenantList
-                                    key={tenant.id}
-                                    id={tenant.id}
-                                    tName={tenant.real_name}
-                                    tContact={tenant.contact}
-                                    tUnit={tenant.unit_number}
-                                    tRentPaid={tenant.rent_paid}
-                                    grabUpdate={() => this.tenantToUpdate(tenant.id)}
-                                    updating={this.state.toUpdate}
-                                />
-                            );
-                        })}
-                    </ViewTenant>
-                                />
-                                
-                            );
-                        })}
-                    </ViewTenant>
-                    <div className="container" id="message-view-cont">
-                        <h1>Message Board</h1>
-                        <MessageList>
-                            {this.state.messages.map(message => {
-                                return (
-                                    <MessageListItem
-                                        key={message.id}
-                                        message_content={message.message_content}
-                                        username={message.User.username}
-                                        date={message.createdAt}
-                                        admin={message.User.admin_status}
-                                        onClick={() => this.delPost(message.id)}
-                                    />
-                                );
-                            })}
-                        </MessageList>
+                    <div className="row">
+                        <div className="col-sm-6">
+                            <div className="container" id="message-view-cont">
+                                <h1>Message Board</h1>
+                                <MessageList>
+                                    {this.state.messages.map(message => {
+                                        return (
+                                            <MessageListItem
+                                                key={message.id}
+                                                message_content={message.message_content}
+                                                username={message.User.username}
+                                                date={message.createdAt}
+                                                admin={message.User.admin_status}
+                                                onClick={() => this.delPost(message.id)}
+                                            />
+                                        );
+                                    })}
+                                </MessageList>
+                            </div>
+                        </div>
+                        <div className="col-sm-6">
+                            <ViewTenant>
+                                {this.state.tenants.map(tenant => {
+                                    return (
+                                        <ViewTenant>
+                                            {this.state.tenants.map(tenant => {
+                                                return (
+                                                    <TenantList
+                                                        key={tenant.id}
+                                                        id={tenant.id}
+                                                        tName={tenant.real_name}
+                                                        tContact={tenant.contact}
+                                                        tUnit={tenant.unit_number}
+                                                        tRentPaid={tenant.rent_paid}
+                                                        grabUpdate={() => this.tenantToUpdate(tenant.id)}
+                                                        updating={this.state.toUpdate}
+                                                    />
+                                                );
+                                            })}
+                                        </ViewTenant>
+
+                                    );
+                                })}
+                            </ViewTenant>
+                        </div>
                     </div>
 
                 </div>
@@ -171,33 +174,39 @@ class Homepage extends Component {
             return (
                 <div>
                     <div className="container" id="button-cont">
-                        <h1>User Utilites</h1>
+                        <h1>Admin Utilites</h1>
                         <div className="row" id="button-row">
                             <div className="col-sm-4"> <Message />Add a Message</div>
-                            <div className="col-sm-4"> <TenantForm />Add a Tenant</div>
+                            <div className="col-sm-4"> <Maintenance />Maintenance Request</div>
                             <div className="col-sm-4"> <Message />View Documents</div>
                         </div>
                     </div>
-                    <div className="container" id="message-view-cont">
-                        <h1>Message Board</h1>
-                        <MessageList>
-                            {this.state.messages.map(message => {
-                                return (
-                                    <MessageListItem
-                                        key={message.id}
-                                        message_content={message.message_content}
-                                        username={message.User.username}
-                                        date={message.createdAt}
-                                        admin={message.User.admin_status}
-                                    />
-                                );
-                            })}
-                        </MessageList>
+                    <div className="row">
+                        <div className="col-sm-6">
+                            <div className="container" id="message-view-cont">
+                                <h1>Message Board</h1>
+                                <MessageList>
+                                    {this.state.messages.map(message => {
+                                        return (
+                                            <MessageListItem
+                                                key={message.id}
+                                                message_content={message.message_content}
+                                                username={message.User.username}
+                                                date={message.createdAt}
+                                                admin={message.User.admin_status}
+                                                onClick={() => this.delPost(message.id)}
+                                            />
+                                        );
+                                    })}
+                                </MessageList>
+                            </div>
+                        </div>
+                        <div className="col-sm-6">
+                            <TenantInfo />
+                        </div>
                     </div>
-                    
                     <Time />
                 </div>
-
             )
         }
     }
