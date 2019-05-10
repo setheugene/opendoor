@@ -153,14 +153,22 @@ class Homepage extends Component {
                 </div>
             )
         } else if (this.state.admin_status === false) {
+            const currentTenant = this.state.tenants.filter(tenant => tenant.User.id === this.state.id)
+            console.log(currentTenant[0]);
+
+
             return (
                 <div>
                     <div className="container" id="button-cont">
-                        <h1>Admin Utilites</h1>
+                        <h1>Welcome {currentTenant[0].real_name}</h1>
                         <div className="row" id="button-row">
-                            <div className="col-sm-4"> <Message />Add a Message</div>
-                            <div className="col-sm-4"> <Maintenance />Maintenance Request</div>
-                            <div className="col-sm-4"> <Message />View Documents</div>
+                            <div className="col-sm-4"> <Message
+                                populateHandler={this.populateMessages}
+                            />Add a Message</div>
+                            <div className="col-sm-4"> <Maintenance
+                                populateHandler={this.populateMessages}
+                            />Maintenance Request</div>
+                            <div className="col-sm-4">  <a href={currentTenant[0].lease} target="blank">View Documents</a></div>
                         </div>
                     </div>
                     <div className="row">
