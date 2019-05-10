@@ -1,4 +1,5 @@
 const express = require("express");
+const path = require('path');
 const sequelize = require("sequelize");
 const routes = require("./routes");
 const db = require("./models");
@@ -25,6 +26,7 @@ app.use(function (req, res, next) {
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("my-app/build"));
   app.get('*', (request, response) => {
+    console.log(request)
     response.sendFile(path.join(__dirname, 'my-app/build', 'index.html'));
   });
 }
