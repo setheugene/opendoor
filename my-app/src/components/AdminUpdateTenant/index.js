@@ -56,7 +56,6 @@ class UpdateTenant extends Component {
             !this.state.tenantToUpdate.real_name ||
             !this.state.tenantToUpdate.unit_number ||
             !this.state.tenantToUpdate.rent_amount ||
-            !this.state.tenantToUpdate.rent_paid ||
             !this.state.tenantToUpdate.contact ||
             !this.state.tenantToUpdate.lease
         ) {
@@ -85,7 +84,7 @@ class UpdateTenant extends Component {
     render() {
         return (
             <div>
-                <button className="Edit" id="card-button" onClick={this.onClick}>Text</button>
+                <button className="Edit" id="card-button" onClick={this.onClick}>Update</button>
 
                 <Modal show={this.state.show} onHide={this.handleClose}>
                     <Modal.Header id="message-modal-header" closeButton>

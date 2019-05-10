@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import Login from "../components/Login";
 import firebase from "firebase";
-import $ from 'jquery';
 import About from "../components/About";
 import API from "../utils/API";
 

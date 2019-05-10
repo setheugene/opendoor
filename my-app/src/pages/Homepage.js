@@ -6,7 +6,6 @@ import { ViewTenant, TenantList } from "../components/AdminViewTenant";
 import TenantForm from "../components/AdminAddTenant";
 import Time from "../components/Timer"
 import "./styleadmin.css";
-import UpdateTenant from "../components/AdminUpdateTenant";
 import "./styleadmin.css";
 
 
@@ -78,33 +77,21 @@ class Homepage extends Component {
     }
 
     delPost = id => {
+        console.log(this.state.messages)
         console.log(id)
+        let toDeleteId = id
+
         API.deletePost(id)
-    }
-
-    render() {
-
-        // console.log(this.state.toUpdate);
-    sendUpdate = event => {
-        console.log(this.state.toUpdate)
-        API.updateTenant({
-            id: this.state.toUpdate.id,
-            real_name: this.state.toUpdate.real_name,
-            unit_number: this.state.toUpdate.unit_number,
-            rent_amount: this.state.toUpdate.rent_amount,
-            rent_paid: this.state.toUpdate.rent_paid,
-            contact: this.state.toUpdate.contact,
-            lease: this.state.toUpdate.lease
-        })
             .then(() => {
-                console.log("Updated tenant!");
-                alert("Updated!");
-            });
-    };
+                for (let i = 0; i < this.state.messages.length; i++) {
+                    if (this.state.messages[i].id === toDeleteId) {
+                        this.state.messages.splice(i, 1);
+                        console.log(this.state.messages);
+                        this.populateMessages();
+                    }
+                }
+            })
 
-    delPost = id => {
-        console.log(id)
-        API.deletePost(id)
     }
 
 
@@ -118,14 +105,13 @@ class Homepage extends Component {
                         <h1>Admin Utilites</h1>
                         <div className="row" id="button-row">
                             <div className="col-sm-4"> <Message />Add a Message</div>
-                            <div className="col-sm-4"> <TenantForm />Add a Tenant</div>
+                            <div className="col-sm-4"> <TenantForm
+                                populateTenants={() => this.populateTenants()}
+                            />Add a Tenant</div>
                             <div className="col-sm-4"> <Message />View Documents</div>
                         </div>
                     </div>
-                    <ViewTenant>
-                        {this.state.tenants.map(tenant => {
-                            return (
-                    
+
                     <ViewTenant>
                         {this.state.tenants.map(tenant => {
                             return (
@@ -142,11 +128,7 @@ class Homepage extends Component {
                             );
                         })}
                     </ViewTenant>
-                                />
-                                
-                            );
-                        })}
-                    </ViewTenant>
+
                     <div className="container" id="message-view-cont">
                         <h1>Message Board</h1>
                         <MessageList>
@@ -194,7 +176,7 @@ class Homepage extends Component {
                             })}
                         </MessageList>
                     </div>
-                    
+
                     <Time />
                 </div>
 

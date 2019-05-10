@@ -204,7 +204,7 @@ app.post("/addtenant", function (req, res) {
 
     })
     .catch(function (error) {
-      throw error;
+      console.log(error);
     })
 })
 
