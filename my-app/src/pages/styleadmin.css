@@ -2,6 +2,12 @@
     width: 100%;
     color: white;
 }
+
+button {
+    background: #3a4660;
+}
+
+
 button:hover {
     box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
   }
@@ -16,6 +22,10 @@ button:hover {
     font-family: 'Karla', sans-serif;
     text-align: center;
     padding: 30px;
+}
+
+.col-sm-4 {
+    background: #3a4660;
 }
 
 

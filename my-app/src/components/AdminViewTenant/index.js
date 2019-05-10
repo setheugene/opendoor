@@ -9,11 +9,11 @@ export function ViewTenant({ children }) {
 
             <table className="table">
                 <thead>
-                    <th>Tenant Name</th>
-                    <th>Tenant Contact</th>
+                    <th>Name</th>
+                    <th>Contact</th>
                     <th>Unit #</th>
                     <th>Rent Paid</th>
-                    <th>Edit Tenant</th>
+                    <th>Edit</th>
                 </thead>
                 <tbody>
                     {children}
