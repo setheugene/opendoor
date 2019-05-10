@@ -19,12 +19,11 @@ app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   next();
 });
-// app.use(express.static("testing"));
 
 
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {
-  app.use(express.static("client/build"));
+  app.use(express.static("my-app/build"));
 }
 
 var syncOptions = { force: true };
@@ -34,10 +33,6 @@ admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
   databaseURL: "https://opendoor-9b5d6.firebaseio.com"
 });
-
-
-
-
 
 // function to check for admin claims on firebase, returns true if so
 let verifyAdmin = (data) => {
