@@ -1,4 +1,5 @@
 const express = require("express");
+const path = require('path');
 const sequelize = require("sequelize");
 const routes = require("./routes");
 const db = require("./models");
@@ -24,6 +25,9 @@ app.use(function (req, res, next) {
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("my-app/build"));
+  app.get(/\/[^login|api|addtenant].*/, (request, response) => {
+    response.sendFile(path.join(__dirname, 'my-app/build', 'index.html'));
+  });
 }
 
 var syncOptions = { force: true };
