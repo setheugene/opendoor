@@ -21,6 +21,7 @@ class TenantForm extends Component {
     };
   }
   handleClose() {
+    this.props.populateHandler();
     this.setState({ show: false });
   }
 
@@ -59,6 +60,7 @@ class TenantForm extends Component {
   };
 
   handleFormSubmit = event => {
+    event.preventDefault();
     if (
       !this.state.real_name ||
       !this.state.unit_number ||
@@ -92,7 +94,7 @@ class TenantForm extends Component {
           <Modal.Header closeButton>
             <Modal.Title>Add a New Tenant</Modal.Title>
           </Modal.Header>
-          <Modal.Body> <form className="form-group">
+          <Modal.Body> <form className="form-group" onSubmit={this.handleFormSubmit}>
             <input
               className="form-control"
               value={this.state.real_name}
@@ -141,7 +143,7 @@ class TenantForm extends Component {
               type="text"
               placeholder="Paste Link to Rental Agreement"
             />
-            <button type="submit" onClick={this.handleFormSubmit}>
+            <button type="submit">
               Add
           </button>
           </form>

@@ -23,6 +23,7 @@ class Message extends Component {
   }
 
   handleClose() {
+    this.props.populateHandler();
     this.setState({ show: false });
   }
 
@@ -66,6 +67,7 @@ class Message extends Component {
       UserId: this.state.id,
     })
       .then(() => {
+        this.handleClose();
         console.log("success");
       });
   };
@@ -82,6 +84,7 @@ class Message extends Component {
   };
 
   handleFormSubmit = event => {
+    event.preventDefault();
     let posts = [];
     if (!this.state.message_content) {
       alert("Please insert a message before clicking submit.");
@@ -91,7 +94,7 @@ class Message extends Component {
     }
 
     this.setState({
-      message_content: [posts]
+      message_content: ""
     });
     console.log(posts);
 
