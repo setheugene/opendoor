@@ -35,7 +35,6 @@ export function MessageListItem({ message_content, username, admin, date, onClic
         <p id="time">{print} <button id="message-delete" className="fas fa-map-pin" onClick={onClick}> X</button></p>
 
 
-        </p>
         <p id="message">{message_content}</p>
         <p id="user-post">{username}
           {admin}
