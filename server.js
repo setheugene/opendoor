@@ -224,12 +224,11 @@ app.delete("/api/all/tenants", (req, res) => {
     });
 });
 
-app.get("*", (req, res) => {
-  let url = path.join(__dirname, '../client/build', 'index.html');
-  if (!url.startsWith('/app/')) // since we're on local windows
-    url = url.substring(1);
-  res.sendFile(url);
+app.use(express.static(__dirname + "/client/build"));
+app.get("/*", (req, res) => {
+  res.sendFile(path.join(__dirname, "client", "build", "index.html"));
 });
+
 
 db.sequelize.sync(syncOptions).then(function () {
   app.listen(PORT, function () {
