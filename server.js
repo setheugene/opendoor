@@ -189,7 +189,8 @@ app.post("/addtenant", function (req, res) {
                     })
                     .then((newTenant) => {
                       console.log("New user added to database, ID: " + userData.dataValues.id)
-                      console.log(newTenant);
+                      console.log(newTenant.dataValues.id);
+                      res.json(newTenant.dataValues.id);
                     })
                 })
             })

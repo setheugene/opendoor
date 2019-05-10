@@ -24,6 +24,9 @@ module.exports = {
                 admin_status: req.body.admin_status,
                 UserId: req.body.UserId,
             })
+            .then((response) => {
+                res.json(response);
+            })
             .catch((err) => {
                 throw err
             })

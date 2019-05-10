@@ -9,11 +9,13 @@ export function ViewTenant({ children }) {
 
             <table className="table">
                 <thead>
-                    <th>Name</th>
-                    <th>Contact</th>
-                    <th>Unit #</th>
-                    <th>Rent Paid</th>
-                    <th>Edit</th>
+                    <tr>
+                        <th>Name</th>
+                        <th>Contact</th>
+                        <th>Unit #</th>
+                        <th>Rent Paid</th>
+                        <th>Edit</th>
+                    </tr>
                 </thead>
                 <tbody>
                     {children}
@@ -45,8 +47,8 @@ export function TenantList({ tName, tContact, tUnit, tRentPaid, id, grabUpdate, 
                 <UpdateTenant
                     value={id}
                     onClick={grabUpdate}
-                    tenantToUpdate={updating}/>
-                
+                    tenantToUpdate={updating} />
+
             </td>
         </tr>
     );

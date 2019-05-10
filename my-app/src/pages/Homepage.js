@@ -66,6 +66,7 @@ class Homepage extends Component {
 
 
     populateTenants = event => {
+        console.log(this.state.tenants);
         API.getTenants()
             .then(res => this.setState({ tenants: res.data }))
             .catch(err => console.log(err));
@@ -84,13 +85,7 @@ class Homepage extends Component {
         let toDeleteId = id
         API.deletePost(id)
             .then(() => {
-                for (let i = 0; i < this.state.messages.length; i++) {
-                    if (this.state.messages[i].id === toDeleteId) {
-                        this.state.messages.splice(i, 1);
-                        console.log(this.state.messages);
-                        this.populateMessages();
-                    }
-                }
+                this.populateMessages();
             })
 
     }
@@ -104,9 +99,11 @@ class Homepage extends Component {
                     <div className="container" id="button-cont">
                         <h1>Admin Utilites</h1>
                         <div className="row" id="button-row">
-                            <div className="col-sm-4"> <Message />Add a Message</div>
+                            <div className="col-sm-4"> <Message
+                                populateHandler={this.populateMessages}
+                            />Add a Message</div>
                             <div className="col-sm-4"> <TenantForm
-                                populateTenants={() => this.populateTenants()}
+                                populateHandler={this.populateTenants}
                             />Add a Tenant</div>
                             <div className="col-sm-4"> <Message />View Documents</div>
                         </div>
