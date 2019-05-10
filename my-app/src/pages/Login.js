@@ -40,7 +40,7 @@ class LoginPage extends Component {
                                     .then((res) => {
                                         console.log(res);
                                         console.log("Verified user, redirecting...");
-                                        window.location.replace("http://localhost:3000/home");
+                                        window.location.replace("/home");
                                     })
                                     .catch((err) => {
                                         throw err;
