@@ -7,9 +7,9 @@ export default class Time extends React.Component {
     render() {
         var moment = require("moment");
         let now = moment();
-        console.log(now);
+        // console.log(now);
         let dueDate = moment().endOf('month');
-        console.log(dueDate);
+        // console.log(dueDate);
 
         return (
             <div className="background">
