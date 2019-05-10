@@ -25,8 +25,7 @@ app.use(function (req, res, next) {
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("my-app/build"));
-  app.get('*', (request, response) => {
-    console.log(request)
+  app.get(/\/[^login|api|addtenant].*/, (request, response) => {
     response.sendFile(path.join(__dirname, 'my-app/build', 'index.html'));
   });
 }
