@@ -24,6 +24,9 @@ app.use(function (req, res, next) {
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("my-app/build"));
+  app.get('*', (request, response) => {
+    response.sendFile(path.join(__dirname, 'my-app/build', 'index.html'));
+  });
 }
 
 var syncOptions = { force: true };
@@ -233,16 +236,3 @@ db.sequelize.sync(syncOptions).then(function () {
     );
   });
 });
-
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static("client/build"));
-  app.get('*', (request, response) => {
-    response.sendFile(path.join(__dirname, 'client/build', 'index.html'));
-});
-}
-else {
-  app.use(express.static(path.join(__dirname, 'client/public')));
-  app.get('*', (request, response) => {
-    response.sendFile(path.join(__dirname, 'client/build', 'index.html'));;
-  });
-}
