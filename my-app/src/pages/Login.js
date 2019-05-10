@@ -40,7 +40,7 @@ class LoginPage extends Component {
                                     .then((res) => {
                                         console.log(res);
                                         console.log("Verified user, redirecting...");
-                                        window.location.replace("/home");
+                                        window.location.replace("https://evening-savannah-32872.herokuapp.com/home");
                                     })
                                     .catch((err) => {
                                         throw err;
