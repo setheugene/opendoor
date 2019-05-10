@@ -224,12 +224,6 @@ app.delete("/api/all/tenants", (req, res) => {
     });
 });
 
-app.use(express.static(__dirname + "/client/build"));
-app.get("/*", (req, res) => {
-  res.sendFile(path.join(__dirname, "client", "build", "index.html"));
-});
-
-
 db.sequelize.sync(syncOptions).then(function () {
   app.listen(PORT, function () {
     console.log(
@@ -239,3 +233,16 @@ db.sequelize.sync(syncOptions).then(function () {
     );
   });
 });
+
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("client/build"));
+  app.get("/*", (req, res) => {
+      res.sendFile(path.join(__dirname, './client/build/index.html'));
+  });
+}
+else {
+  app.use(express.static(path.join(__dirname, 'client/public')));
+  app.get("/*", (req, res) => {
+      res.sendFile(path.join(__dirname, './client/public/index.html'));
+  });
+}
