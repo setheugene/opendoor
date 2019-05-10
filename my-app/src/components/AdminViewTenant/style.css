@@ -9,16 +9,16 @@
     font-family: 'Karla', sans-serif;
     font-size: 25px;
     text-align: center;
-    
 }
 
 thead {
-    color: white;
+  color: white;
 }
 
 tbody {
     color: white;
     font-size:20px;
+
   width: 60%;
   background: #7c889e;
   margin-top: 75px;
@@ -34,13 +34,11 @@ tbody {
   #tenant-view-cont {
     width: 80%;
   }
-
   th {
     font-size: 15px;
   }
-
   td {
-      font-size: 15px;
+    font-size: 15px;
   }
 }
 
@@ -48,27 +46,22 @@ tbody {
   #tenant-view-cont {
     width: 80%;
   }
-
   th {
     font-size: 10px;
   }
-
   td {
-      font-size: 10px;
+    font-size: 10px;
   }
 }
 
-
 @media only screen and (max-width: 400px) {
-    #tenant-view-cont {
-      width: 80%;
-    }
-  
-    th {
-      font-size: 7px;
-    }
-  
-    td {
-        font-size: 7px;
-    }
+  #tenant-view-cont {
+    width: 80%;
   }
+  th {
+    font-size: 7px;
+  }
+  td {
+    font-size: 7px;
+  }
+}

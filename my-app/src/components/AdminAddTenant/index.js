@@ -11,6 +11,7 @@ class TenantForm extends Component {
     this.handleClose = this.handleClose.bind(this);
 
     this.state = {
+      show: false,
       real_name: "",
       unit_number: "",
       rent_amount: "",
@@ -37,8 +38,13 @@ class TenantForm extends Component {
       lease: this.state.rental_agreement
     })
       .then(() => {
-        console.log("Tenant Added");
-      });
+        alert("Tenant Added");
+        this.handleClose();
+      })
+      .catch((err) => {
+        alert(err);
+        console.log(err);
+      })
   };
 
   handleInputChange = event => {
@@ -75,6 +81,7 @@ class TenantForm extends Component {
       rental_agreement: ""
     });
     console.log(this.state);
+
   };
 
   render() {
