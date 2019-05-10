@@ -228,6 +228,8 @@ app.delete("/api/all/tenants", (req, res) => {
     });
 });
 
+app.use(routes);
+
 db.sequelize.sync(syncOptions).then(function () {
   app.listen(PORT, function () {
     console.log(
