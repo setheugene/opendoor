@@ -28,7 +28,6 @@ class Maintenance extends Component {
         this.setState({ show: true });
     }
     render() {
-
         return (
             <div>
                 <button className="fas fa-tools fa-7x" id="card-button" onClick={this.handleShow}></button>

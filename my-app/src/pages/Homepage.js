@@ -199,12 +199,12 @@ class Homepage extends Component {
                             </div>
                         </div>
                         <div className="col-sm-6">
-                            {/* <TenantInfo
+                            <TenantInfo
                                 lease={currentTenant[0].lease}
-                            /> */}
+                            />
                         </div>
                     </div>
-                    <Time />
+                    {/* <Time /> */}
                 </div>
             )
         }
