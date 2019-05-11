@@ -168,7 +168,6 @@ class Homepage extends Component {
                             <div className="col-sm-4"> <Maintenance
                                 populateHandler={this.populateMessages}
                             />Maintenance Request</div>
-                            <div className="col-sm-4">  <a href={currentTenant[0].lease} target="blank">View Documents</a></div>
                         </div>
                     </div>
                     <div className="row">
@@ -192,7 +191,9 @@ class Homepage extends Component {
                             </div>
                         </div>
                         <div className="col-sm-6">
-                            <TenantInfo />
+                            <TenantInfo
+                            lease={currentTenant[0].lease}
+                             />
                         </div>
                     </div>
 
