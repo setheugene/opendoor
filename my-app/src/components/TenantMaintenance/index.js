@@ -51,18 +51,17 @@ class Maintenance extends Component {
                         </div>
                         <button type="submit" value="Submit" className="btn btn-primary">
                             Post
-          </button>
+                        </button>
                     </form>
                     </Modal.Body>
                     <Modal.Footer id="message-modal">
                         <Button variant="secondary" onClick={this.handleClose}>
                             Close
-            </Button>
+                         </Button>
                     </Modal.Footer>
                 </Modal>
             </div>
         )
     }
 }
-
 export default Maintenance;

@@ -87,7 +87,6 @@ class UpdateTenant extends Component {
         return (
             <div>
                 <button className="Edit" id="card-button" onClick={this.onClick}>Update</button>
-
                 <Modal show={this.state.show} onHide={this.handleClose}>
                     <Modal.Header id="message-modal-header" closeButton>
                         <Modal.Title>Update a Tenant</Modal.Title>
@@ -146,10 +145,9 @@ class UpdateTenant extends Component {
                     <Modal.Footer id="message-modal">
                         <Button variant="secondary" onClick={this.handleClose}>
                             Close
-            </Button>
+                        </Button>
                     </Modal.Footer>
                 </Modal>
-
             </div>
         )
     }
