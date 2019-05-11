@@ -12,7 +12,6 @@ import Maintenance from "../components/TenantMaintenance";
 
 
 class Homepage extends Component {
-
     state = {
         username: "",
         id: "",
@@ -157,14 +156,11 @@ class Homepage extends Component {
                             );
                         </div>
                     </div>
-
                 </div>
             )
         } else if (this.state.admin_status === false) {
             const currentTenant = this.state.tenants.filter(tenant => tenant.User.id === this.state.id)
             console.log(currentTenant[0]);
-
-
             return (
                 <div>
                     <div className="container" id="button-cont">
@@ -205,11 +201,10 @@ class Homepage extends Component {
                         </div>
                         <div className="col-sm-6">
                             <TenantInfo
-                            lease={currentTenant[0].lease}
-                             />
+                                lease={currentTenant[0].lease}
+                            />
                         </div>
                     </div>
-
                     <Time />
                 </div>
             )
