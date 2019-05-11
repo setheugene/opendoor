@@ -168,9 +168,9 @@ class Homepage extends Component {
                             <div className="col-sm-4"> <Message
                                 populateHandler={this.populateMessages}
                             />Add a Message</div>
-                            {/* <div className="col-sm-4"> <Maintenance
+                            <div className="col-sm-4"> <Maintenance
                                 populateHandler={this.populateMessages}
-                            />Maintenance Request</div> */}
+                            />Maintenance Request</div>
                             <div className="col-sm-4"><a href="/"><button
                                 id="card-button"
                                 className="fas fa-sign-out-alt fa-7x"
@@ -199,9 +199,9 @@ class Homepage extends Component {
                             </div>
                         </div>
                         <div className="col-sm-6">
-                            <TenantInfo
+                            {/* <TenantInfo
                                 lease={currentTenant[0].lease}
-                            />
+                            /> */}
                         </div>
                     </div>
                     <Time />
