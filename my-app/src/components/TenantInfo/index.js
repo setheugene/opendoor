@@ -5,7 +5,7 @@ function TenantInfo(props) {
     return (
         <div className="col-sm-12" id="info-cont">
             <h1>Tenant Info</h1>
-            <button className="far fa-eye fa-5x" id="leaseInfo">  <a href={props.lease} target="blank"></a></button>
+            <a href={props.lease} target="blank"><button className="far fa-eye fa-5x" id="leaseInfo" ></button></a>
             <div className="row" id="text-row">
                 <div className="col-sm-12">
                     View Documents
