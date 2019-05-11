@@ -25,6 +25,7 @@ class UpdateTenant extends Component {
     }
 
     handleClose() {
+        this.props.populateHandler();
         this.setState({ show: false });
     }
 
@@ -78,6 +79,7 @@ class UpdateTenant extends Component {
             .then(() => {
                 console.log("Updated tenant!");
                 alert("Updated!");
+                this.handleClose();
             });
     };
 

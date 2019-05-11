@@ -27,7 +27,7 @@ export function ViewTenant({ children }) {
 }
 
 
-export function TenantList({ tName, tContact, tUnit, tRentPaid, id, grabUpdate, updating }) {
+export function TenantList({ tName, tContact, tUnit, tRentPaid, id, grabUpdate, updating, populateHandler}) {
 
     // console.log(updating);
     let rentCheck = "";
@@ -47,7 +47,8 @@ export function TenantList({ tName, tContact, tUnit, tRentPaid, id, grabUpdate, 
                 <UpdateTenant
                     value={id}
                     onClick={grabUpdate}
-                    tenantToUpdate={updating} />
+                    tenantToUpdate={updating}
+                    populateHandler={populateHandler} />
 
             </td>
         </tr>
