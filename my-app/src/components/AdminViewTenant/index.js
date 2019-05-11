@@ -28,7 +28,6 @@ export function ViewTenant({ children }) {
 
 
 export function TenantList({ tName, tContact, tUnit, tRentPaid, id, grabUpdate, updating, populateHandler}) {
-
     // console.log(updating);
     let rentCheck = "";
     if (tRentPaid) {
@@ -36,7 +35,6 @@ export function TenantList({ tName, tContact, tUnit, tRentPaid, id, grabUpdate, 
     } else {
         rentCheck = "not paid"
     }
-
     return (
         <tr>
             <td>{tName}</td>

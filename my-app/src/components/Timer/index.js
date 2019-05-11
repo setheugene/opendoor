@@ -10,7 +10,6 @@ export default class Time extends React.Component {
         // console.log(now);
         let dueDate = moment().endOf('month');
         // console.log(dueDate);
-
         return (
             <div className="background">
                 <div className="move">

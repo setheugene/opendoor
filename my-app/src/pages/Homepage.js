@@ -153,12 +153,12 @@ class Homepage extends Component {
                                     );
                                 })}
                             </ViewTenant>
-                            );
                         </div>
                     </div>
                 </div>
             )
-        } else if (this.state.admin_status === false) {
+        }
+        else if (this.state.admin_status === false) {
             const currentTenant = this.state.tenants.filter(tenant => tenant.User.id === this.state.id)
             return (
                 <div>
@@ -204,7 +204,7 @@ class Homepage extends Component {
                             />
                         </div>
                     </div>
-                    {/* <Time /> */}
+                    <Time />
                 </div>
             )
         }
