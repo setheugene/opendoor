@@ -101,7 +101,6 @@ class Message extends Component {
   };
 
   render() {
-
     return (
       <div>
         <button className="fas fa-envelope fa-7x" id="card-button" onClick={this.handleShow}></button>

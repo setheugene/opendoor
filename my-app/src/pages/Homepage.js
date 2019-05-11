@@ -4,7 +4,7 @@ import { MessageListItem, MessageList } from "../components/MessageView";
 import API from "../utils/API";
 import { ViewTenant, TenantList } from "../components/AdminViewTenant";
 import TenantForm from "../components/AdminAddTenant";
-// import Time from "../components/Timer"
+import Time from "../components/Timer"
 import "./styleadmin.css";
 import "./styleadmin.css";
 import TenantInfo from "../components/TenantInfo";

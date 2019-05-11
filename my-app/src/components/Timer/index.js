@@ -14,7 +14,6 @@ export default class Time extends React.Component {
             <div className="background">
                 <div className="move">
                     <p className="">Rent is Due: <Moment to={dueDate}>{now}</Moment></p>
-
                 </div>
             </div>
         );
