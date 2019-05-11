@@ -66,10 +66,11 @@ class Homepage extends Component {
 
 
     populateTenants = event => {
-        console.log(this.state.tenants);
+        // console.log(this.state.tenants);
         API.getTenants()
             .then(res => this.setState({ tenants: res.data }))
             .catch(err => console.log(err));
+        // this.populateTenants();
     }
 
     tenantToUpdate = filterId => {
@@ -87,9 +88,11 @@ class Homepage extends Component {
             .then(() => {
                 this.populateMessages();
             })
-
     }
 
+    logOut = () => {
+        sessionStorage.clear()
+    }
 
     render() {
         if (this.state.admin_status === true) {
@@ -105,7 +108,11 @@ class Homepage extends Component {
                             <div className="col-sm-4"> <TenantForm
                                 populateHandler={this.populateTenants}
                             />Add a Tenant</div>
-                            <div className="col-sm-4"> <Message />View Documents</div>
+                            <div className="col-sm-4"><a href="/"><button
+                                id="card-button"
+                                className="fas fa-sign-out-alt fa-7x"
+                                onClick={this.logOut}
+                            ></button></a></div>
                         </div>
                     </div>
 
@@ -142,6 +149,7 @@ class Homepage extends Component {
                                             tRentPaid={tenant.rent_paid}
                                             grabUpdate={() => this.tenantToUpdate(tenant.id)}
                                             updating={this.state.toUpdate}
+                                            populateHandler={this.populateTenants}
                                         />
                                     );
                                 })}
@@ -168,7 +176,11 @@ class Homepage extends Component {
                             <div className="col-sm-4"> <Maintenance
                                 populateHandler={this.populateMessages}
                             />Maintenance Request</div>
-                            <div className="col-sm-4">  <a href={currentTenant[0].lease} target="blank">View Documents</a></div>
+                            <div className="col-sm-4"><a href="/"><button
+                                id="card-button"
+                                className="fas fa-sign-out-alt fa-7x"
+                                onClick={this.logOut}
+                            ></button></a></div>
                         </div>
                     </div>
                     <div className="row">
