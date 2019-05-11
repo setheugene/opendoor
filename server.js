@@ -231,6 +231,10 @@ app.delete("/api/all/tenants", (req, res) => {
 
 app.use(routes);
 
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "./my-app/build/index.html"));
+});
+
 db.sequelize.sync(syncOptions).then(function () {
   app.listen(PORT, function () {
     console.log(
