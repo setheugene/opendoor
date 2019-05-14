@@ -1,4 +1,4 @@
-**/config/opendoor-admin.json
+/config/opendoor-admin.json
 /node_modules
 todo.txt
 /testing
